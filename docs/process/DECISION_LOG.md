@@ -1,0 +1,91 @@
+# Decision Log
+
+This log records durable process decisions. Append new entries; do not rewrite history except to fix clear typos.
+
+## 2026-05-16 | D-0001 | Root process scaffold
+
+Decision: Create root-level process artifacts for Codex orchestration without changing code.
+
+Rationale: The workspace contains multiple subprojects, a legacy LLM wiki, AutoResearch templates, and a modular skills bundle. A root process layer is needed so future sessions route work consistently.
+
+Status: Accepted
+
+## 2026-05-16 | D-0002 | Root `wiki/` as normalized memory layer
+
+Decision: Use root `wiki/` for normalized future memory while treating `LLM Wiki Karpathy/` as legacy project memory.
+
+Rationale: The user explicitly requested `wiki/raw/README.md`, `wiki/index.md`, `wiki/log.md`, and `wiki/schema.md`. Existing `LLM Wiki Karpathy/` already contains useful material but does not match the requested root paths.
+
+Status: Accepted
+
+## 2026-05-16 | D-0003 | Do not force `bd` migration
+
+Decision: Do not run `bd migrate --update-repo-id`, remove `.beads`, or ignore repository mismatch automatically.
+
+Rationale: `bd` reported a repository ID mismatch in the parent repo. Forcing sync or migration without user approval could corrupt issue data.
+
+Status: Accepted
+
+## 2026-05-16 | D-0004 | Docs-only initialization
+
+Decision: Do not write application code during process initialization.
+
+Rationale: The user explicitly said "JANGAN menulis kode dulu."
+
+Status: Accepted
+
+## 2026-05-16 | D-0005 | Adopt user-supplied operating constitution
+
+Decision: Replace the initial root `AGENTS.md` draft with the user-supplied Project Operating Constitution and fill repository orientation fields from observed workspace facts.
+
+Rationale: The user provided a more concise constitution with explicit work modes, stop conditions, progress scoring, and Boris-style workflow constraints.
+
+Status: Accepted
+
+## 2026-05-16 | D-0006 | Add universal process OS
+
+Decision: Add `docs/process/OPERATING_SYSTEM.md`, `docs/process/TASK_ROUTING.md`, and `docs/process/QUALITY_GATES.md` as the reusable operating layer for all task types.
+
+Rationale: The workspace needs to support implementation, research, wiki maintenance, review/audit, C4-ET gates, and release/handoff without relying on ad hoc task handling.
+
+Status: Accepted
+
+## 2026-05-16 | D-0007 | Add evidence and research templates
+
+Decision: Add root process templates for MAS evidence packets and AutoResearch artifacts.
+
+Rationale: The operating system needs concrete artifacts for primary-source factual claims and reusable research tasks before those workflows can be validated in real work.
+
+Status: Accepted
+
+## 2026-05-16 | D-0008 | Accept GO-TRIAL review validation
+
+Decision: Treat the process consistency review as the first GO-TRIAL validation of the universal process OS for Review/Audit work.
+
+Rationale: The task used `TASK_ROUTING.md` for mode selection, `QUALITY_GATES.md` for gate checks, and `OPERATING_SYSTEM.md` for the intake-execute-verify-log-handoff loop. Remaining validation is still required for implementation and research tasks.
+
+Status: Accepted
+
+## 2026-05-16 | D-0009 | Repository boundary remains NO-GO
+
+Decision: Do not commit, push, sync `bd`, migrate `bd`, or change remotes from the current state.
+
+Rationale: The Karpathy project directory is nested inside the Git root `C:\Users\Gysje P`, whose remote is `casemix-bpjs-analisis-2026`. The Karpathy project root has no local `.git` or `.beads`, while the active parent `.beads` reports a repository ID mismatch. Committing now could mix Karpathy files, credential-like files, and unrelated home-directory changes into the wrong remote.
+
+Status: Accepted
+
+## 2026-05-16 | D-0010 | Initialize project-local Git and bd
+
+Decision: Keep the project in `C:\Users\Gysje P\Documents\Adi File\Karpathy` as a nested but project-local Git repository, with a local `.gitignore` and local `bd` database.
+
+Rationale: The user identified this path as the correct project root. Moving/copying the full workspace would be safer for isolation but more disruptive. A nested project-local repo is acceptable if commits are made only from the Karpathy root, secrets/data/generated artifacts stay ignored, and no parent repo staging is used.
+
+Status: Accepted
+
+## 2026-05-16 | D-0011 | First local commit uses selective process-only staging
+
+Decision: Stage and commit only the project operating system, process logs, root wiki process pages, `skills/README.md`, `.gitignore`, and safe `.beads` metadata.
+
+Rationale: The workspace contains credential-like files, large data/media, generated artifacts, archives, and nested source subprojects. A first commit should establish process governance without accidentally tracking secrets or source corpora that need separate review.
+
+Status: Accepted
