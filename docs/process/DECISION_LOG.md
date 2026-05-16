@@ -89,3 +89,19 @@ Decision: Stage and commit only the project operating system, process logs, root
 Rationale: The workspace contains credential-like files, large data/media, generated artifacts, archives, and nested source subprojects. A first commit should establish process governance without accidentally tracking secrets or source corpora that need separate review.
 
 Status: Accepted
+
+## 2026-05-16 | D-0012 | Hold source corpus pending curated reviews
+
+Decision: Do not stage `Bahan/`, `LLM Wiki Karpathy/`, `_tmp*/`, generated bundles, archive/media/data files, or nested source projects in the next batch. Allow `.gitattributes` in a future selective process metadata batch, and hold `CLAUDE.md` / `MASTER_INDEX.md` for a small curated orientation-doc review.
+
+Rationale: Inventory found credential-like files under `Bahan/.streamlit`, archive/data files, local DB files, generated template folders, and a nested Git repo at `Bahan/Karpathy RAG system/llm-wiki/.git`. No files exceed 10MB, so Git LFS is not required now.
+
+Status: Accepted
+
+## 2026-05-16 | D-0013 | Commit curated source orientation docs
+
+Decision: Commit `.gitattributes`, `CLAUDE.md`, and `MASTER_INDEX.md` as a narrow curated orientation-doc batch, while continuing to block broad source corpus staging.
+
+Rationale: Byte-level UTF-8 checks passed, mojibake was not present in file content, credential-like scanning found no secret assignments or private-key material, and cached diff checks showed only the explicit three-file staged set. The only credential-like match was the non-secret phrase `hemat token`.
+
+Status: Accepted

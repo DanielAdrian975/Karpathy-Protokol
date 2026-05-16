@@ -77,3 +77,27 @@ Ran a Selective Staging Audit before the first local commit.
 - Decided to stage only process docs, root wiki process pages, `skills/README.md`, `.gitignore`, and safe `.beads` metadata.
 
 Decision recorded as `D-0011`. No raw sources were ingested.
+
+## 2026-05-16 | decision | source-subproject-inventory | Corpus staging decision
+
+Ran Source/Subproject Inventory Decision before the next staging batch.
+
+- No files larger than 10MB were found.
+- Nested Git repo found at `Bahan\Karpathy RAG system\llm-wiki\.git`.
+- Build/test markers found in `Bahan\Enhance Pengetahuan Ekstraktor\requirements.txt` and `_tmp_autoresearch_template\autoresearch_template_python_mas_c4et_boris\requirements.txt`.
+- Credential-like files found under `Bahan\.streamlit\`; these remain ignored and NO-GO.
+- `.gitattributes` only configures `bd` merge behavior and is safe for a future selective metadata batch.
+
+Decision recorded as `D-0012`: hold large source corpus pending curated reviews. No raw sources were ingested.
+
+## 2026-05-16 | decision | curated-source-docs | Orientation docs committed
+
+Ran Curated Source Docs Staging Audit for `.gitattributes`, `CLAUDE.md`, and `MASTER_INDEX.md`.
+
+- Byte-level UTF-8 checks passed for all three files.
+- Mojibake was not present in file content; earlier mojibake was a terminal decoding display issue.
+- Credential-like scan found no secret assignments or private-key material.
+- Only the explicit three-file staged set was committed locally in `8d284b6`.
+- No large source corpus, credential files, archives, media, local DBs, generated folders, remote changes, push, or `bd sync` were included.
+
+Decision recorded as `D-0013`: commit curated source orientation docs while keeping broad corpus staging NO-GO.

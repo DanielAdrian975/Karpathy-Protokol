@@ -30,6 +30,9 @@ This root wiki is the normalized project memory for future Codex work. It comple
 | `docs/process/QUALITY_GATES.md` | Reusable quality gates for safety, scope, evidence, implementation, docs/wiki, progress, and release. |
 | `docs/process/MAS_EVIDENCE_PACKET_TEMPLATE.md` | Template for atomic factual claims, primary-source evidence anchors, red-team review, judge scoring, and final status. |
 | `docs/process/AUTORESEARCH_ARTIFACT_TEMPLATE.md` | Template for research question, scope, retrieval criteria, primary evidence table, synthesis, confidence, and next actions. |
+| `docs/process/SOURCE_SUBPROJECT_INVENTORY.md` | Decision table for source corpus, nested project, archive/data, credential-like, and `.gitattributes` treatment. |
+| `CLAUDE.md` | Root legacy orientation rules for trading research workspace behavior. |
+| `MASTER_INDEX.md` | Root legacy orientation index for trading research workspace context and routing. |
 
 ## Legacy Memory To Reconcile
 
@@ -39,5 +42,6 @@ The existing legacy wiki describes a Forex Trading Strategy Development System w
 
 - Create `wiki/sources/` and migrate legacy source registry into normalized source pages.
 - Create `wiki/entities/`, `wiki/concepts/`, `wiki/syntheses/`, and `wiki/comparisons/` when first needed.
+- Run sensitivity/provenance review before staging legacy wiki or large source corpus folders.
 - Validate MAS evidence packet template on a real factual claim task.
 - Validate AutoResearch artifact template on a real research task.

@@ -1,7 +1,7 @@
 # Project Plans
 
-Status: GO-TRIAL review validation completed
-Progress baseline: 43.75%
+Status: process log reconciliation staging audit completed
+Progress baseline: 48.75%
 Last updated: 2026-05-16
 
 ## Repo Summary
@@ -108,7 +108,9 @@ Project work is done when all applicable items pass:
 - Workspace now has a project-local Git root at `C:\Users\Gysje P\Documents\Adi File\Karpathy`.
 - Project-local Git has no remote/upstream configured yet.
 - Project-local `bd` is initialized with issue prefix `Karpathy`; do not run `bd sync` until a safe remote/upstream exists.
-- First local commit is prepared via selective staging only; broad staging remains prohibited.
+- First local commit completed via selective staging only; broad staging remains prohibited.
+- Source/subproject inventory decision completed; corpus staging remains mostly NO-GO pending curated reviews.
+- Curated source orientation docs were committed locally in `8d284b6`; no large source corpus was staged.
 - No root test, lint, or build command is defined.
 - Multiple subprojects exist with independent commands; no unified quality gate has been selected.
 - Existing wiki lives under `LLM Wiki Karpathy/`; new process expects root `wiki/`.
@@ -125,7 +127,7 @@ Project work is done when all applicable items pass:
 ## Next 5 Tasks
 
 1. Configure a safe project remote/upstream for the Karpathy repo, if publishing is required.
-2. Inventory and decide treatment for nested source subprojects before staging anything under `Bahan/`.
+2. Run sensitivity/provenance review for `LLM Wiki Karpathy/` and `Claude Up Skills/` before any source-doc staging.
 3. Validate `MAS_EVIDENCE_PACKET_TEMPLATE.md` on one real factual claim task.
 4. Validate `AUTORESEARCH_ARTIFACT_TEMPLATE.md` on one real research task.
 5. Validate the universal process OS on one implementation task and one research task.
