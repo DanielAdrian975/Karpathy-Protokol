@@ -1,7 +1,7 @@
 # Project Plans
 
-Status: process log reconciliation staging audit completed
-Progress baseline: 48.75%
+Status: process maturity sprint completed
+Progress baseline: 80.25%
 Last updated: 2026-05-16
 
 ## Repo Summary
@@ -111,7 +111,9 @@ Project work is done when all applicable items pass:
 - First local commit completed via selective staging only; broad staging remains prohibited.
 - Source/subproject inventory decision completed; corpus staging remains mostly NO-GO pending curated reviews.
 - Curated source orientation docs were committed locally in `8d284b6`; no large source corpus was staged.
-- No root test, lint, or build command is defined.
+- Remote/upstream safety audit completed; push remains NO-GO until a correct remote is configured.
+- Test command discovery completed; no root test, lint, or build command is defined.
+- MAS Evidence-First, AutoResearch, and C4-ET were validated on local process trials.
 - Multiple subprojects exist with independent commands; no unified quality gate has been selected.
 - Existing wiki lives under `LLM Wiki Karpathy/`; new process expects root `wiki/`.
 - Some existing Markdown files show encoding/mojibake in terminal output and may need normalization.
@@ -128,6 +130,6 @@ Project work is done when all applicable items pass:
 
 1. Configure a safe project remote/upstream for the Karpathy repo, if publishing is required.
 2. Run sensitivity/provenance review for `LLM Wiki Karpathy/` and `Claude Up Skills/` before any source-doc staging.
-3. Validate `MAS_EVIDENCE_PACKET_TEMPLATE.md` on one real factual claim task.
-4. Validate `AUTORESEARCH_ARTIFACT_TEMPLATE.md` on one real research task.
-5. Validate the universal process OS on one implementation task and one research task.
+3. Select the authoritative implementation subproject and define its canonical test command.
+4. Run a real implementation GO-TRIAL on the selected subproject.
+5. Convert validated process trials into reusable checklist snippets or skills if repetition increases.

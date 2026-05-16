@@ -31,6 +31,11 @@ This root wiki is the normalized project memory for future Codex work. It comple
 | `docs/process/MAS_EVIDENCE_PACKET_TEMPLATE.md` | Template for atomic factual claims, primary-source evidence anchors, red-team review, judge scoring, and final status. |
 | `docs/process/AUTORESEARCH_ARTIFACT_TEMPLATE.md` | Template for research question, scope, retrieval criteria, primary evidence table, synthesis, confidence, and next actions. |
 | `docs/process/SOURCE_SUBPROJECT_INVENTORY.md` | Decision table for source corpus, nested project, archive/data, credential-like, and `.gitattributes` treatment. |
+| `docs/process/REMOTE_UPSTREAM_SAFETY_AUDIT.md` | Local Git/remote/upstream and `bd` safety audit; push remains NO-GO. |
+| `docs/process/TEST_COMMAND_DISCOVERY.md` | Root and subproject test/build marker discovery; root command remains unresolved. |
+| `docs/process/MAS_EVIDENCE_PACKET_TRIAL.md` | Local MAS Evidence-First workflow validation using primary local evidence. |
+| `docs/process/AUTORESEARCH_ARTIFACT_TRIAL.md` | Local AutoResearch workflow validation with bounded scope, evidence table, synthesis, and unresolved claims. |
+| `docs/process/C4ET_SOURCE_CORPUS_GATE.md` | C4-ET dry-run decision blocking broad source corpus staging. |
 | `CLAUDE.md` | Root legacy orientation rules for trading research workspace behavior. |
 | `MASTER_INDEX.md` | Root legacy orientation index for trading research workspace context and routing. |
 
@@ -43,5 +48,5 @@ The existing legacy wiki describes a Forex Trading Strategy Development System w
 - Create `wiki/sources/` and migrate legacy source registry into normalized source pages.
 - Create `wiki/entities/`, `wiki/concepts/`, `wiki/syntheses/`, and `wiki/comparisons/` when first needed.
 - Run sensitivity/provenance review before staging legacy wiki or large source corpus folders.
-- Validate MAS evidence packet template on a real factual claim task.
-- Validate AutoResearch artifact template on a real research task.
+- Select the authoritative implementation subproject and canonical test command.
+- Configure a safe remote/upstream before push or `bd sync`.

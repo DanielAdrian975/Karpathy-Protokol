@@ -101,3 +101,15 @@ Ran Curated Source Docs Staging Audit for `.gitattributes`, `CLAUDE.md`, and `MA
 - No large source corpus, credential files, archives, media, local DBs, generated folders, remote changes, push, or `bd sync` were included.
 
 Decision recorded as `D-0013`: commit curated source orientation docs while keeping broad corpus staging NO-GO.
+
+## 2026-05-16 | audit | process-maturity-sprint | Local workflow trials to 75% target
+
+Ran Process Maturity Sprint using local-only artifacts.
+
+- `docs/process/REMOTE_UPSTREAM_SAFETY_AUDIT.md`: project Git root is correct, but remote/upstream are not configured; push and `bd sync` remain NO-GO.
+- `docs/process/TEST_COMMAND_DISCOVERY.md`: no root test/build marker exists; implementation work needs authoritative subproject selection.
+- `docs/process/MAS_EVIDENCE_PACKET_TRIAL.md`: validated MAS Evidence-First mechanics with atomic local claims, primary local evidence, red-team notes, judge scores, and final statuses.
+- `docs/process/AUTORESEARCH_ARTIFACT_TRIAL.md`: validated AutoResearch mechanics with local scope, search targets, evidence table, synthesis, confidence, and unresolved claims.
+- `docs/process/C4ET_SOURCE_CORPUS_GATE.md`: C4-ET dry run returned NO-GO for broad source corpus staging.
+
+Decisions recorded as `D-0014` through `D-0017`. No source corpus, credential files, remote changes, push, or `bd sync` were included.

@@ -62,4 +62,4 @@ Only pass when repo and issue tracker are safe:
 - Relevant changes staged/committed/pushed when repo ownership is clear.
 - Final response includes complete, incomplete, checks, risks, and progress.
 
-Current workspace note: Gate 6 is blocked until Git root and `bd` repository mismatch are resolved.
+Current workspace note: Gate 6 is blocked until a correct project remote/upstream exists and `bd sync` is safe. The project-local Git root and local `bd` database are initialized, but push and `bd sync` remain NO-GO.

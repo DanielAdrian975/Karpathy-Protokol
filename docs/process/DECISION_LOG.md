@@ -105,3 +105,35 @@ Decision: Commit `.gitattributes`, `CLAUDE.md`, and `MASTER_INDEX.md` as a narro
 Rationale: Byte-level UTF-8 checks passed, mojibake was not present in file content, credential-like scanning found no secret assignments or private-key material, and cached diff checks showed only the explicit three-file staged set. The only credential-like match was the non-secret phrase `hemat token`.
 
 Status: Accepted
+
+## 2026-05-16 | D-0014 | Keep push and bd sync blocked until remote is explicit
+
+Decision: Treat push and `bd sync` as NO-GO until the user selects and verifies the correct Karpathy project remote/upstream.
+
+Rationale: Remote audit found `NO_REMOTE_CONFIG`, `NO_BRANCH_UPSTREAM_CONFIG`, and 515 untracked entries outside tracked process scope. Local commits are safe only after explicit staging review; release/push is not safe without a verified remote.
+
+Status: Accepted
+
+## 2026-05-16 | D-0015 | Root test command remains unresolved
+
+Decision: Use structural docs/process verification for root process work, and stop before implementation work until an authoritative subproject and canonical test command are selected.
+
+Rationale: Test discovery found no root `package.json`, `pyproject.toml`, `Makefile`, pytest/tox/nox config, or Docker compose file. Candidate Python subprojects exist, but they are in source corpus or ignored template paths and require separate audit.
+
+Status: Accepted
+
+## 2026-05-16 | D-0016 | Accept local MAS and AutoResearch trials
+
+Decision: Count the local MAS evidence packet and AutoResearch artifact trials as workflow validation for process maturity, while keeping real product/research validation as future work.
+
+Rationale: The trials used primary local files and read-only command outputs, included unresolved claims, and avoided external or credential evidence. This validates the artifact mechanics without overstating product-level research completeness.
+
+Status: Accepted
+
+## 2026-05-16 | D-0017 | C4-ET gate blocks broad source corpus staging
+
+Decision: Broad source corpus staging remains NO-GO. Continue only with narrow, explicitly audited process/wiki/source-doc batches.
+
+Rationale: The C4-ET dry run found high WIP breadth, known credential-risk zones, a nested Git repo, and missing release remote/upstream. A curated batch process is the safer throughput experiment.
+
+Status: Accepted
