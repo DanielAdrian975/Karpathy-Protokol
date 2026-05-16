@@ -137,3 +137,11 @@ Decision: Broad source corpus staging remains NO-GO. Continue only with narrow, 
 Rationale: The C4-ET dry run found high WIP breadth, known credential-risk zones, a nested Git repo, and missing release remote/upstream. A curated batch process is the safer throughput experiment.
 
 Status: Accepted
+
+## 2026-05-16 | D-0018 | Use Karpathy-Protokol as project remote
+
+Decision: Configure `origin` as `https://github.com/DanielAdrian975/Karpathy-Protokol.git`, rename the local branch to `main`, push to `origin/main`, and use `bd --no-daemon sync` for issue sync.
+
+Rationale: The user provided the explicit project remote URL. The remote was reachable and had no existing heads before first push. `bd sync` expected `origin/main`, so using `main` avoids sync mismatch while preserving the local commit history.
+
+Status: Accepted

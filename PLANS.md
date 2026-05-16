@@ -1,7 +1,7 @@
 # Project Plans
 
-Status: process maturity sprint completed
-Progress baseline: 80.25%
+Status: Gate 6 remote/upstream closure completed
+Progress baseline: 82.25%
 Last updated: 2026-05-16
 
 ## Repo Summary
@@ -106,12 +106,13 @@ Project work is done when all applicable items pass:
 ## Known Gaps
 
 - Workspace now has a project-local Git root at `C:\Users\Gysje P\Documents\Adi File\Karpathy`.
-- Project-local Git has no remote/upstream configured yet.
-- Project-local `bd` is initialized with issue prefix `Karpathy`; do not run `bd sync` until a safe remote/upstream exists.
+- Project-local Git uses `origin` at `https://github.com/DanielAdrian975/Karpathy-Protokol.git`.
+- Project-local branch `main` tracks `origin/main`.
+- Project-local `bd` is initialized with issue prefix `Karpathy`; `bd --no-daemon sync` completed with 0 issues and no changes to commit.
 - First local commit completed via selective staging only; broad staging remains prohibited.
 - Source/subproject inventory decision completed; corpus staging remains mostly NO-GO pending curated reviews.
 - Curated source orientation docs were committed locally in `8d284b6`; no large source corpus was staged.
-- Remote/upstream safety audit completed; push remains NO-GO until a correct remote is configured.
+- Remote/upstream safety audit completed; first push to `origin/main` and `bd --no-daemon sync` succeeded.
 - Test command discovery completed; no root test, lint, or build command is defined.
 - MAS Evidence-First, AutoResearch, and C4-ET were validated on local process trials.
 - Multiple subprojects exist with independent commands; no unified quality gate has been selected.
@@ -121,15 +122,14 @@ Project work is done when all applicable items pass:
 
 ## Blocking Questions
 
-- Which project remote should be configured for Karpathy?
 - Should nested Git-enabled source folders be kept as nested repos, converted to submodules, ignored, or flattened?
 - Which subproject is the authoritative implementation target for future code work?
 - What is the canonical test command for root-level verification?
 
 ## Next 5 Tasks
 
-1. Configure a safe project remote/upstream for the Karpathy repo, if publishing is required.
-2. Run sensitivity/provenance review for `LLM Wiki Karpathy/` and `Claude Up Skills/` before any source-doc staging.
-3. Select the authoritative implementation subproject and define its canonical test command.
-4. Run a real implementation GO-TRIAL on the selected subproject.
-5. Convert validated process trials into reusable checklist snippets or skills if repetition increases.
+1. Run sensitivity/provenance review for `LLM Wiki Karpathy/` and `Claude Up Skills/` before any source-doc staging.
+2. Select the authoritative implementation subproject and define its canonical test command.
+3. Run a real implementation GO-TRIAL on the selected subproject.
+4. Convert validated process trials into reusable checklist snippets or skills if repetition increases.
+5. Decide treatment for nested Git-enabled source folders: submodule, separate repo, ignore, or curated flattening.

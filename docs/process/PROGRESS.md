@@ -1,7 +1,7 @@
 # Progress
 
 Last updated: 2026-05-16
-Baseline score: 80.25%
+Baseline score: 82.25%
 
 ## Scoring Model
 
@@ -15,11 +15,11 @@ Progress is scored against durable project process readiness and execution quali
 | AutoResearch workflow | 15% | 75% | `AUTORESEARCH_ARTIFACT_TRIAL.md` validates research question, scope, search targets, evidence table, synthesis, confidence, and unresolved claims |
 | C4-ET gate discipline | 10% | 75% | `C4ET_SOURCE_CORPUS_GATE.md` completes A1-A4, B1-B4, ET1-ET3, and NO-GO decision for broad source staging |
 | Skills workflow map | 10% | 85% | Router and quality gates exercised across review, wiki, MAS, AutoResearch, and C4-ET process trials; installed skill validation still pending |
-| Git/bd operational closure | 10% | 80% | Project-local Git root and `bd` are initialized; selective local commits completed; remote/upstream, push, and `bd sync` still pending |
+| Git/bd operational closure | 10% | 100% | Project-local Git root, `origin/main`, first push, and `bd --no-daemon sync` are complete |
 
 ## Current Baseline
 
-Process initialization has created a reusable operating layer for all major task types. Overall process readiness is now 80.25%, passing the 75% sprint target. Remaining limits are no safe remote/upstream for release, no authoritative implementation subproject, no canonical implementation test command, and no broad legacy wiki/source provenance migration.
+Process initialization has created a reusable operating layer for all major task types. Overall process readiness is now 82.25%, passing the 75% sprint target. Remaining limits are no authoritative implementation subproject, no canonical implementation test command, and no broad legacy wiki/source provenance migration.
 
 ## Completed This Session
 
@@ -45,17 +45,14 @@ Process initialization has created a reusable operating layer for all major task
 - Completed MAS Evidence Packet Trial using local primary evidence.
 - Completed AutoResearch Artifact Trial using local process evidence.
 - Completed C4-ET source corpus staging gate with a NO-GO decision.
+- Configured user-approved remote `origin` at `https://github.com/DanielAdrian975/Karpathy-Protokol.git`, renamed branch to `main`, pushed to `origin/main`, and completed `bd --no-daemon sync`.
 
 ## In Progress
 
-- Configuring a safe project remote/upstream remains the next release prerequisite.
 - Selecting the authoritative implementation subproject remains the next implementation prerequisite.
 
 ## Blocked
 
-- `bd sync` must not run until a safe project remote/upstream is configured.
-- Git push cannot be completed until a safe project remote/upstream is configured.
-- Gate 6 release/handoff remains blocked by missing project remote/upstream.
 - Nested source subprojects remain unstaged pending explicit source inventory decisions.
 - Most source corpus remains NO-GO for staging until targeted sensitivity and provenance audits are run.
 
@@ -65,12 +62,13 @@ Process initialization has created a reusable operating layer for all major task
 - Actual Git root before repair: `C:\Users\Gysje P`
 - Actual Git root after repair: `C:\Users\Gysje P\Documents\Adi File\Karpathy`
 - Intended project root: `C:\Users\Gysje P\Documents\Adi File\Karpathy`
-- Actual remote: `https://github.com/DanielAdrian975/casemix-bpjs-analisis-2026.git`
-- Current branch: `master`
+- Parent remote before repair: `https://github.com/DanielAdrian975/casemix-bpjs-analisis-2026.git`
+- Project-local remote: `https://github.com/DanielAdrian975/Karpathy-Protokol.git`
+- Current branch: `main`
 - Project-local `.git`: present
 - Project-local `.beads`: present
 - Active `.beads`: project-local `.beads`, issue prefix `Karpathy`
-- Commit decision: GO for selective local commit only after manual staging review; NO-GO for broad `git add .`, push, remote changes, or `bd sync`.
+- Commit decision: GO for selective commits and normal push to `origin/main` after manual staging review; NO-GO remains for broad `git add .` and source corpus staging.
 
 ## Selective Staging Audit Summary
 
@@ -91,8 +89,8 @@ Process initialization has created a reusable operating layer for all major task
 
 ## Process Maturity Sprint Summary
 
-- Remote/upstream audit: project-local Git root is correct, but no remote/upstream exists; push remains NO-GO.
-- `bd` audit: local `bd` responds and has 0 issues; `bd sync` remains NO-GO until remote/upstream is safe.
+- Remote/upstream audit: project-local Git root is correct, user-approved `origin/main` is configured, and first push succeeded.
+- `bd` audit: local `bd` responds, has 0 issues, and `bd --no-daemon sync` completed with no changes to commit.
 - Test command discovery: no root test/build markers found; candidate Python subprojects require separate source/test audit.
 - MAS trial: `docs/process/MAS_EVIDENCE_PACKET_TRIAL.md` completed with local primary evidence.
 - AutoResearch trial: `docs/process/AUTORESEARCH_ARTIFACT_TRIAL.md` completed with bounded scope, evidence table, synthesis, confidence, and unresolved claims.

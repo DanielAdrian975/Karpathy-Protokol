@@ -2,7 +2,7 @@
 
 Date: 2026-05-16
 Mode: Review/Audit + Wiki Maintenance
-Scope: local Git and `bd` state only. No remote changes, push, or `bd sync`.
+Scope: local Git and `bd` state. Initial audit made no remote changes, push, or `bd sync`; closure update records the user-approved remote.
 
 ## Commands Run
 
@@ -34,7 +34,7 @@ bd config list
 | `bd status` | 0 issues; local database responsive | `bd` is usable locally. |
 | `bd sync` | Not run | Correctly blocked until safe remote/upstream exists. |
 
-## Push Gate
+## Initial Push Gate
 
 Result: **NO-GO for push**
 
@@ -65,8 +65,26 @@ git push -u origin master
 
 Do not use the old parent repo remote `casemix-bpjs-analisis-2026` for this project.
 
+## Closure Update
+
+User-approved remote:
+
+```text
+https://github.com/DanielAdrian975/Karpathy-Protokol.git
+```
+
+Actions completed:
+
+- Verified the remote is reachable and had no existing heads before first push.
+- Added project-local `origin` pointing to the user-approved Karpathy-Protokol URL.
+- Renamed local branch from `master` to `main` because `bd sync` expects `origin/main`.
+- Pushed `main` with upstream tracking: `main...origin/main`.
+- Ran `bd --no-daemon sync`; result: 0 local issues, 0 remote issues, no changes to commit, sync complete.
+
+Closure result: **GO for future normal push/pull on `origin/main`**, with broad corpus staging still blocked by source-corpus gates.
+
 ## Residual Risks
 
 - Wrong remote selection could publish sensitive or unrelated Karpathy workspace material.
-- `bd sync` could publish issue metadata to the wrong repository if run before remote ownership is clear.
+- `bd sync` could publish issue metadata to the wrong repository if run before remote ownership is clear. This is mitigated for the current project by the user-approved `Karpathy-Protokol` remote.
 - The root remains nested inside a parent user directory that also has Git configuration, so commands must continue to run from the Karpathy root.

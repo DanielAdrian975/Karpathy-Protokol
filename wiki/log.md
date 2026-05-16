@@ -113,3 +113,15 @@ Ran Process Maturity Sprint using local-only artifacts.
 - `docs/process/C4ET_SOURCE_CORPUS_GATE.md`: C4-ET dry run returned NO-GO for broad source corpus staging.
 
 Decisions recorded as `D-0014` through `D-0017`. No source corpus, credential files, remote changes, push, or `bd sync` were included.
+
+## 2026-05-16 | decision | gate-6-remote-closure | Remote and bd sync enabled
+
+Closed the remote/upstream blocker after the user provided the project remote:
+
+- Remote: `https://github.com/DanielAdrian975/Karpathy-Protokol.git`
+- Verified the remote was reachable and empty before first push.
+- Added `origin`, renamed local branch from `master` to `main`, and pushed to `origin/main`.
+- Ran `bd --no-daemon sync`: 0 local issues, 0 remote issues, no changes to commit, sync complete.
+- Broad source corpus staging remains NO-GO; only audited tracked commits were pushed.
+
+Decision recorded as `D-0018`. No raw source corpus was ingested.
