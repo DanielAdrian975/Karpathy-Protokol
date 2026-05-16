@@ -140,8 +140,8 @@ Status: Accepted
 
 ## 2026-05-16 | D-0018 | Use Karpathy-Protokol as project remote
 
-Decision: Configure `origin` as `https://github.com/DanielAdrian975/Karpathy-Protokol.git`, rename the local branch to `main`, push to `origin/main`, and use `bd --no-daemon sync` for issue sync.
+Decision: Configure `origin` as `https://github.com/DanielAdrian975/Karpathy-Protokol.git`, rename the local branch to `main`, migrate the project-local `bd` repository ID, push to `origin/main`, and use `bd --no-daemon sync` for issue sync.
 
-Rationale: The user provided the explicit project remote URL. The remote was reachable and had no existing heads before first push. `bd sync` expected `origin/main`, so using `main` avoids sync mismatch while preserving the local commit history.
+Rationale: The user provided the explicit project remote URL. The remote was reachable and had no existing heads before first push. `bd sync` expected `origin/main`, so using `main` avoids sync mismatch while preserving the local commit history. After the remote change, `bd` correctly detected a repository ID mismatch; `bd --no-daemon migrate --update-repo-id --yes` updated the project-local ID from `dd2a206c` to `97d26813`.
 
 Status: Accepted

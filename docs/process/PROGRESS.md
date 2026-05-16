@@ -45,7 +45,7 @@ Process initialization has created a reusable operating layer for all major task
 - Completed MAS Evidence Packet Trial using local primary evidence.
 - Completed AutoResearch Artifact Trial using local process evidence.
 - Completed C4-ET source corpus staging gate with a NO-GO decision.
-- Configured user-approved remote `origin` at `https://github.com/DanielAdrian975/Karpathy-Protokol.git`, renamed branch to `main`, pushed to `origin/main`, and completed `bd --no-daemon sync`.
+- Configured user-approved remote `origin` at `https://github.com/DanielAdrian975/Karpathy-Protokol.git`, renamed branch to `main`, migrated the project-local `bd` repository ID, pushed to `origin/main`, and completed `bd --no-daemon sync`.
 
 ## In Progress
 
@@ -90,7 +90,7 @@ Process initialization has created a reusable operating layer for all major task
 ## Process Maturity Sprint Summary
 
 - Remote/upstream audit: project-local Git root is correct, user-approved `origin/main` is configured, and first push succeeded.
-- `bd` audit: local `bd` responds, has 0 issues, and `bd --no-daemon sync` completed with no changes to commit.
+- `bd` audit: local `bd` responds, has 0 issues, repository ID was migrated from `dd2a206c` to `97d26813`, and `bd --no-daemon sync` completed.
 - Test command discovery: no root test/build markers found; candidate Python subprojects require separate source/test audit.
 - MAS trial: `docs/process/MAS_EVIDENCE_PACKET_TRIAL.md` completed with local primary evidence.
 - AutoResearch trial: `docs/process/AUTORESEARCH_ARTIFACT_TRIAL.md` completed with bounded scope, evidence table, synthesis, confidence, and unresolved claims.

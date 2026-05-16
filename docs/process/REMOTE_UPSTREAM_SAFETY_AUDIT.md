@@ -79,6 +79,7 @@ Actions completed:
 - Added project-local `origin` pointing to the user-approved Karpathy-Protokol URL.
 - Renamed local branch from `master` to `main` because `bd sync` expects `origin/main`.
 - Pushed `main` with upstream tracking: `main...origin/main`.
+- Ran `bd --no-daemon migrate --update-repo-id --yes` after the remote change; repository ID changed from `dd2a206c` to `97d26813`.
 - Ran `bd --no-daemon sync`; result: 0 local issues, 0 remote issues, no changes to commit, sync complete.
 
 Closure result: **GO for future normal push/pull on `origin/main`**, with broad corpus staging still blocked by source-corpus gates.

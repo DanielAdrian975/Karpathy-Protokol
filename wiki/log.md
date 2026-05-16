@@ -121,6 +121,7 @@ Closed the remote/upstream blocker after the user provided the project remote:
 - Remote: `https://github.com/DanielAdrian975/Karpathy-Protokol.git`
 - Verified the remote was reachable and empty before first push.
 - Added `origin`, renamed local branch from `master` to `main`, and pushed to `origin/main`.
+- Migrated project-local `bd` repository ID from `dd2a206c` to `97d26813` after the remote change.
 - Ran `bd --no-daemon sync`: 0 local issues, 0 remote issues, no changes to commit, sync complete.
 - Broad source corpus staging remains NO-GO; only audited tracked commits were pushed.
 
