@@ -17,12 +17,14 @@ Workspace ini adalah basis untuk trading research + AI decision-making tools men
 
 | Kebutuhan | Lokasi | Protokol |
 |---|---|---|
+| **Project dashboard (semua protokol)** | `PROJECT_DASHBOARD.md` | — control tower |
 | Analisis market / evidence | `Bahan/Knowledge_Management_System/` | MAS Evidence-First |
 | Trading research wiki | `/trading-research-wiki` skill | trading-research-wiki |
 | TradingView chart operations | MCP tools (`mcp__tradingview__*`) | Boris Workflow |
 | Knowledge extraction | `Bahan/Enhance Pengetahuan Ekstraktor/` | Karpathy Style |
 | Autoresearch loop | `_tmp_autoresearch_template/` | Boris + C4-ET |
 | Protokol referensi | `Bahan/Knowledge_Management_System/Claude CLI/` | — |
+| PMO governance referensi | `deep-research-report(1).md` | PMO Microtask |
 
 ---
 
@@ -79,4 +81,4 @@ pine_smart_compile       → Compile + check errors
 
 ---
 
-*Terakhir diperbarui: 2026-05-07*
+*Terakhir diperbarui: 2026-05-17*
