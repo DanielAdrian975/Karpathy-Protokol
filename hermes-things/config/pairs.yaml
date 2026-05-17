@@ -1,0 +1,37 @@
+# Hermes Things — Forex Major Pairs Configuration
+
+pairs:
+  - symbol: EURUSD
+    pip_size: 0.0001
+    digits: 5
+    session_focus: [london, new_york]
+
+  - symbol: GBPUSD
+    pip_size: 0.0001
+    digits: 5
+    session_focus: [london, new_york]
+
+  - symbol: USDJPY
+    pip_size: 0.01
+    digits: 3
+    session_focus: [asian, london, new_york]
+
+  - symbol: USDCHF
+    pip_size: 0.0001
+    digits: 5
+    session_focus: [london, new_york]
+
+  - symbol: AUDUSD
+    pip_size: 0.0001
+    digits: 5
+    session_focus: [asian, london]
+
+  - symbol: USDCAD
+    pip_size: 0.0001
+    digits: 5
+    session_focus: [new_york]
+
+  - symbol: NZDUSD
+    pip_size: 0.0001
+    digits: 5
+    session_focus: [asian, london]

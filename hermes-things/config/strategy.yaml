@@ -1,0 +1,58 @@
+# Hermes Things — Strategy Configuration
+# Chris Lori ICT/Institutional methodology
+
+strategy:
+  name: chris_lori_institutional
+  version: "1.0"
+
+# Timeframes
+timeframes:
+  htf_bias:    ["D", "240"]   # Daily + H4 untuk bias
+  structure:   ["60"]         # H1 untuk market structure
+  entry:       ["15"]         # M15 untuk entry confirmation
+
+# Fibonacci OTE zone
+fibonacci:
+  swing_lookback: 20          # Bars untuk identifikasi swing
+  ote_low:  0.618             # OTE zone bawah
+  ote_high: 0.786             # OTE zone atas
+  levels:   [0.236, 0.382, 0.5, 0.618, 0.705, 0.786]
+
+# Session killzones (EST)
+sessions:
+  london:
+    start: "02:00"
+    end:   "05:00"
+    weight: 1.0
+  new_york:
+    start: "07:00"
+    end:   "10:00"
+    weight: 1.0
+  asian:
+    start: "20:00"
+    end:   "00:00"
+    weight: 0.5               # Lower weight, range formation
+
+# Confluence scoring
+confluence:
+  min_score: 6                # Min score untuk STRONG signal
+  med_score: 4                # Min score untuk MEDIUM signal
+  weights:
+    htf_bias_aligned:    2
+    market_structure:    2
+    ote_zone:            2
+    killzone_active:     1
+    pdh_pdl_confluence:  1
+
+# Backtest settings
+backtest:
+  default_sl_pips: 15
+  default_tp_ratio: 2.0       # RR 1:2
+  spread_pips: 1.5
+  commission_pips: 0.5
+
+# Optimization
+optimizer:
+  method: grid               # grid | random | bayesian
+  iterations: 500
+  metric: sharpe_ratio       # sharpe_ratio | profit_factor | win_rate
