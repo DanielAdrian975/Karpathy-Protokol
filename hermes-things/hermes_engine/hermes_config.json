@@ -1,0 +1,232 @@
+{
+  "agent_name": "hermes-things",
+  "version": "1.0",
+  "system_prompt": "You are Hermes Things, an autonomous trading research agent implementing Chris Lori's ICT/Institutional methodology.\n\n## Core Framework: TLS Confluence\n\nBefore any signal evaluation, check:\n1. **T — Trend (HTF Bias)**: D1+H4 swing structure. HH+HL=bullish, LH+LL=bearish, conflict=neutral.\n2. **L — Level (PDH/PDL + OTE)**: Price at Previous Day High/Low or in Fibonacci OTE zone (0.618-0.786).\n3. **S — Signal (Structure Event)**: BOS (continuation) or CHoCH (reversal) on H1.\n\n## Confluence Scoring\n\n| Factor | Score |\n|--------|-------|\n| HTF bias aligned | +2 |\n| Market structure event | +2 |\n| OTE zone | +2 |\n| Killzone active (London/NY) | +1 |\n| PDH/PDL confluence | +1 |\n| **TOTAL** | **8** |\n\n- STRONG (>=6): Execute at full size\n- MEDIUM (4-5): Execute at 50% size, require M15 confirmation\n- SKIP (<4): No trade\n\n## Risk Rules\n\n- Max risk per trade: 1-2% of account\n- Min SL: 10 pips from entry\n- Min RR: 1.5 (default 2.0)\n- Stop after 3 consecutive losses or -5% daily\n- Forex majors only: EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD\n- Session filter: only trade London (02:00-05:00 EST) and NY (07:00-10:00 EST) killzones\n\n## Output Format\n\nAll responses: [Source] -> [Finding] -> [Limitation/Uncertainty]\nThis is research output, not financial advice.\n\n## Guardrails\n\n- Never recommend specific position sizes in dollar terms\n- Never guarantee profit or win rate\n- Always label output as \"research signal, not advice\"\n- If data is stale or insufficient -> output \"Insufficient Evidence\"\n",
+  "tools": [
+    {
+      "name": "detect_signal",
+      "description": "Detect a trading signal from current market conditions using TLS confluence scoring.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Forex pair (e.g. EURUSD)"
+          },
+          "current_price": {
+            "type": "number",
+            "description": "Current market price"
+          },
+          "htf_bias": {
+            "type": "string",
+            "enum": [
+              "bullish",
+              "bearish",
+              "neutral"
+            ]
+          },
+          "structure_event": {
+            "type": "string",
+            "enum": [
+              "bos_bullish",
+              "bos_bearish",
+              "choch_bullish",
+              "choch_bearish",
+              "none"
+            ]
+          },
+          "in_ote_zone": {
+            "type": "boolean",
+            "description": "Is price in Fibonacci 0.618-0.786 zone?"
+          },
+          "session": {
+            "type": "string",
+            "enum": [
+              "london",
+              "new_york",
+              "asian",
+              "none"
+            ]
+          },
+          "pdh_pdl_conf": {
+            "type": "boolean",
+            "description": "Is price reacting at PDH or PDL?"
+          },
+          "swing_high": {
+            "type": "number",
+            "description": "Last significant swing high"
+          },
+          "swing_low": {
+            "type": "number",
+            "description": "Last significant swing low"
+          }
+        },
+        "required": [
+          "symbol",
+          "current_price",
+          "htf_bias"
+        ]
+      }
+    },
+    {
+      "name": "validate_risk",
+      "description": "Validate trade risk parameters against Chris Lori risk rules.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "sl_pips": {
+            "type": "number",
+            "description": "Stop loss in pips (min 10)"
+          },
+          "tp_ratio": {
+            "type": "number",
+            "description": "Take profit RR ratio (min 1.5)"
+          },
+          "account_risk_pct": {
+            "type": "number",
+            "description": "Account risk percentage (max 2.0)"
+          }
+        },
+        "required": [
+          "sl_pips",
+          "tp_ratio"
+        ]
+      }
+    },
+    {
+      "name": "get_strategies_by_category",
+      "description": "Retrieve all strategies for a given category code.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D",
+              "E",
+              "F",
+              "G"
+            ],
+            "description": "A=Structure B=Fibonacci C=Sessions D=PDH/PDL E=Confluence F=Bias G=Execution"
+          }
+        },
+        "required": [
+          "category"
+        ]
+      }
+    },
+    {
+      "name": "get_strategies_by_pattern",
+      "description": "Search strategies by keyword (e.g. 'OTE', 'BOS', 'killzone', 'PDH').",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "description": "Search keyword"
+          },
+          "max_results": {
+            "type": "integer",
+            "default": 5
+          }
+        },
+        "required": [
+          "keyword"
+        ]
+      }
+    },
+    {
+      "name": "build_trade_setup",
+      "description": "Build a complete validated trade setup (entry, SL, TP) from a detected signal.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "long",
+              "short"
+            ]
+          },
+          "entry_low": {
+            "type": "number",
+            "description": "OTE zone lower price"
+          },
+          "entry_high": {
+            "type": "number",
+            "description": "OTE zone upper price"
+          },
+          "sl_pips": {
+            "type": "number",
+            "default": 15
+          },
+          "tp_ratio": {
+            "type": "number",
+            "default": 2.0
+          },
+          "pip_size": {
+            "type": "number",
+            "default": 0.0001
+          }
+        },
+        "required": [
+          "symbol",
+          "direction",
+          "entry_low",
+          "entry_high"
+        ]
+      }
+    },
+    {
+      "name": "get_routine",
+      "description": "Get session-based trading routine: what to check at London open, NY open, or session close.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "session": {
+            "type": "string",
+            "enum": [
+              "london",
+              "new_york",
+              "pre_session",
+              "post_session"
+            ]
+          },
+          "pairs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Pairs to scan"
+          }
+        },
+        "required": [
+          "session"
+        ]
+      }
+    }
+  ],
+  "strategy_count": 38,
+  "pairs": [
+    "EURUSD",
+    "GBPUSD",
+    "USDJPY",
+    "USDCHF",
+    "AUDUSD",
+    "USDCAD",
+    "NZDUSD"
+  ],
+  "guardrails": [
+    "No specific dollar position sizing",
+    "No guaranteed profit claims",
+    "Label all output as research signal, not financial advice",
+    "Insufficient Evidence if data stale or missing",
+    "Forex majors only — no exotic pairs"
+  ]
+}

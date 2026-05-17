@@ -132,8 +132,12 @@ def run(
     """
     result = BacktestResult(symbol=symbol)
     n = len(entry_data.bars)
+    last_trade_i = -50  # cooldown: min 50 bars between trades
 
     for i in range(lookback, n - 1):
+        if i - last_trade_i < 50:
+            continue
+
         # Slice data up to bar i
         window = OHLCVData(
             symbol=entry_data.symbol,
@@ -172,5 +176,6 @@ def run(
         future_bars = entry_data.bars[i + 1: i + 50]
         trade = _simulate_trade(trade, future_bars, pip_size)
         result.trades.append(trade)
+        last_trade_i = i
 
     return result

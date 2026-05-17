@@ -66,17 +66,22 @@ def detect(
 
     # 3. Fibonacci OTE from latest swing on H1
     if struct_result.last_swing_high and struct_result.last_swing_low:
+        # Guard: ensure swing_high > swing_low for valid fib calculation
+        raw_sh = struct_result.last_swing_high.price
+        raw_sl = struct_result.last_swing_low.price
+        true_sh = max(raw_sh, raw_sl)
+        true_sl = min(raw_sh, raw_sl)
         fib = fib_calc.from_structure(
-            last_swing_high=struct_result.last_swing_high.price,
-            last_swing_low=struct_result.last_swing_low.price,
+            last_swing_high=true_sh,
+            last_swing_low=true_sl,
             bias=htf_result.bias.value,
         )
-        notes.append(f"OTE zone: {fib.ote_low:.5f} – {fib.ote_high:.5f}")
+        notes.append(f"OTE zone: {fib.ote_low:.5f} - {fib.ote_high:.5f}")
     else:
         # Fallback: use entry_data range
-        sh = max(entry_data.highs[-50:]) if entry_data.highs else 1.0
-        sl_price_fb = min(entry_data.lows[-50:]) if entry_data.lows else 0.9
-        fib = fib_calc.from_structure(sh, sl_price_fb, htf_result.bias.value)
+        true_sh = max(entry_data.highs[-50:]) if entry_data.highs else 1.0
+        true_sl = min(entry_data.lows[-50:])  if entry_data.lows  else 0.9
+        fib = fib_calc.from_structure(true_sh, true_sl, htf_result.bias.value)
         notes.append("OTE: estimated from recent range (no clear swing)")
 
     # 4. PDH/PDL from daily bars
