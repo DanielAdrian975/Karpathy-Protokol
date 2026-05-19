@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Protocol-Aware Project Execution System — Implementation Plan</title>
+<style>
+:root {
+  --bg:#080a0f; --panel:#111722; --panel2:#151d2b; --ink:#f3f7ff; --muted:#9ca9bd;
+  --line:#2a3547; --accent:#4ee1a0; --blue:#7bb7ff; --yellow:#ffd36e; --red:#ff8585;
+  --violet:#c7a7ff; --radius:20px; --shadow:0 24px 70px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 15% 0%,#18233a 0,#080a0f 38%),linear-gradient(180deg,#080a0f,#0e1320);color:var(--ink);font:15.5px/1.55 Inter,Segoe UI,Arial,sans-serif}
+nav{position:sticky;top:0;z-index:20;background:rgba(8,10,15,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1280px;margin:auto;display:flex;gap:8px;overflow:auto;padding:10px 20px} .nav a{color:#d9e5f8;text-decoration:none;border:1px solid var(--line);padding:8px 12px;border-radius:999px;white-space:nowrap;font-size:13px} .nav a:hover{background:#1b2638}
+.wrap{max-width:1280px;margin:auto;padding:32px 20px 80px} .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin:0}
+h1{font-size:clamp(36px,5vw,72px);line-height:.94;margin:8px 0 16px;letter-spacing:-.055em} h2{font-size:clamp(24px,3vw,38px);line-height:1.08;margin:0 0 14px;letter-spacing:-.035em} h3{font-size:18px;margin:0 0 8px} h4{margin:14px 0 6px;color:#dce8fb}
+p{color:#d9e2f2;margin:.45rem 0} .muted{color:var(--muted)} .lead{font-size:20px;max-width:900px;color:#e7eefb}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:18px} .span3{grid-column:span 3} .span4{grid-column:span 4} .span5{grid-column:span 5} .span6{grid-column:span 6} .span7{grid-column:span 7} .span8{grid-column:span 8} .span9{grid-column:span 9} .span12{grid-column:span 12}
+.pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:7px 10px;margin:4px 5px 4px 0;background:#0d1421;color:#dce7f8;font-size:13px} .ok{background:rgba(78,225,160,.16);border-color:rgba(78,225,160,.45);color:#aef8d3} .warn{background:rgba(255,211,110,.14);border-color:rgba(255,211,110,.45);color:#ffe3a0} .info{background:rgba(123,183,255,.14);border-color:rgba(123,183,255,.45);color:#cfe5ff}
+ul{margin:.45rem 0;padding-left:1.15rem} li{margin:.35rem 0;color:#dce6f6} code{background:#070b12;border:1px solid var(--line);border-radius:8px;padding:.16rem .35rem;color:#dff0ff} pre{white-space:pre-wrap;overflow:auto;max-height:420px;background:#070b12;border:1px solid var(--line);border-radius:16px;padding:14px;color:#dce8fb}
+table{border-collapse:collapse;width:100%;overflow:hidden;border-radius:16px} th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top} th{background:#151e2d;color:#cad9ee;text-transform:uppercase;letter-spacing:.06em;font-size:12px} td{color:#dce6f6}
+.flow{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:stretch} .node{background:#0e1625;border:1px solid var(--line);border-radius:16px;padding:13px;min-height:116px;position:relative} .node b{display:block;color:var(--accent);margin-bottom:5px} .node:after{content:'→';position:absolute;right:-16px;top:42%;color:var(--muted);font-weight:800} .node:last-child:after{display:none}
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .proto{border:1px solid var(--line);background:#0d1421;border-radius:17px;padding:14px} .proto .tag{color:var(--accent);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.mock{background:#090e18;border:1px solid var(--line);border-radius:18px;overflow:hidden} .mockbar{display:flex;gap:7px;align-items:center;background:#121b2a;padding:10px 12px;border-bottom:1px solid var(--line)} .dot{width:10px;height:10px;border-radius:50%;background:#ff6f6f} .dot:nth-child(2){background:#ffd36e} .dot:nth-child(3){background:#4ee1a0} .mockbody{padding:16px} .row{display:grid;grid-template-columns:150px 1fr;gap:12px;border-bottom:1px solid #1f2b3d;padding:10px 0} .row:last-child{border-bottom:0} .label{color:#9fb0c8} .value{color:#edf5ff}
+.task{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:start;background:#0e1625;border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0} .tasknum{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#1b2a40;color:var(--accent);font-weight:900} .small{font-size:13px;color:var(--muted)} .badge{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:#d6e3f7;background:#111a29;white-space:nowrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px} button{background:#111a29;color:#dce8f8;border:1px solid var(--line);border-radius:999px;padding:8px 12px;cursor:pointer} button.active{background:var(--accent);color:#03130b;border-color:var(--accent)} .tabpane{display:none} .tabpane.active{display:block}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px} .kpi{background:#0e1625;border:1px solid var(--line);border-radius:16px;padding:14px} .kpi b{display:block;font-size:30px;color:var(--accent)}
+.warning{border-left:5px solid var(--yellow);padding:12px 14px;background:rgba(255,211,110,.10);border-radius:12px;color:#ffe8af}
+@media(max-width:980px){.hero,.flow,.matrix,.kpis{grid-template-columns:1fr} .span3,.span4,.span5,.span6,.span7,.span8,.span9,.span12{grid-column:span 12} .node:after{display:none}}
+@media print{body{background:white;color:#111} nav{display:none} .card{box-shadow:none;break-inside:avoid} pre{max-height:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav">
+<a href="#overview">Overview</a><a href="#architecture">Architecture</a><a href="#protocols">Protocols</a><a href="#mockups">Mockups</a><a href="#tasks">Tasks</a><a href="#code">Code</a><a href="#evidence">Excerpts</a><a href="#verification">Verification</a>
+</div></nav>
+<main class="wrap">
+<section class="hero" id="overview">
+  <div class="card">
+    <p class="muted">Generated 2026-05-20 07:35 · Plan artifact for Karpathy workspace</p>
+    <h1>Protocol-Aware Project Execution System</h1>
+    <p class="lead">Rencana implementasi untuk membuat setiap project otomatis sadar protokol: LLM Wiki Karpathy, MAS Evidence-First, C4-ET Gate, Boris Workflow, AutoResearch, Skills, dan project management.</p>
+    <div><span class="pill ok">Goal: protocol-aware by default</span><span class="pill info">Output: docs + router + templates + gates</span><span class="pill warn">No code change until test scope known</span></div>
+  </div>
+  <aside class="card">
+    <h2>Target Outcome</h2>
+    <div class="kpis">
+      <div class="kpi"><b>1</b><span>single source of truth: protocol OS</span></div>
+      <div class="kpi"><b>6</b><span>protocol families routed at intake</span></div>
+      <div class="kpi"><b>7</b><span>quality gates before done</span></div>
+      <div class="kpi"><b>100%</b><span>tasks have plan + verification path</span></div>
+    </div>
+  </aside>
+</section>
+
+<section class="grid" id="architecture">
+  <div class="card span12">
+    <h2>Architecture: Always-Aware Execution Loop</h2>
+    <div class="flow">
+      <div class="node"><b>1. Intake</b>User goal, expected output, constraints, risk, data source, write scope.</div>
+      <div class="node"><b>2. Protocol Router</b>Select primary mode + support protocols via trigger matrix.</div>
+      <div class="node"><b>3. Plan Packet</b>Boris plan: goal, files, gates, evidence standard, issue ID.</div>
+      <div class="node"><b>4. Execute</b>Scoped changes only. No raw-source mutation. No secrets.</div>
+      <div class="node"><b>5. Verify</b>Tests, docs checks, citations, evidence packets, or C4-ET gates.</div>
+      <div class="node"><b>6. Memory</b>Wiki/index/log, decision log, risk register, progress update.</div>
+      <div class="node"><b>7. Release</b>bd close/sync, commit, push, handoff with residual risk.</div>
+    </div>
+  </div>
+  <div class="card span6">
+    <h2>Files to Add / Change</h2>
+    <table><thead><tr><th>Path</th><th>Purpose</th></tr></thead><tbody>
+      <tr><td><code>docs/process/PROTOCOL_AWARE_EXECUTION_SYSTEM.md</code></td><td>Main spec: router, lifecycle, required artifacts, stop rules.</td></tr>
+      <tr><td><code>docs/process/PROTOCOL_PRECHECK_TEMPLATE.md</code></td><td>Reusable intake checklist every task must satisfy.</td></tr>
+      <tr><td><code>docs/process/PROTOCOL_EXECUTION_PACKET_TEMPLATE.md</code></td><td>Plan + execution + verification + handoff packet.</td></tr>
+      <tr><td><code>AGENTS.md</code></td><td>Make protocol precheck mandatory at task start.</td></tr>
+      <tr><td><code>docs/process/TASK_ROUTING.md</code></td><td>Add detailed trigger precedence and multi-protocol routing.</td></tr>
+      <tr><td><code>docs/process/QUALITY_GATES.md</code></td><td>Add Gate -1 Protocol Awareness before scope gate.</td></tr>
+      <tr><td><code>PLANS.md</code></td><td>Record rollout roadmap and adoption criteria.</td></tr>
+      <tr><td><code>wiki/index.md</code>, <code>wiki/log.md</code></td><td>Index and log durable protocol system decision.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card span6">
+    <h2>Design Principle</h2>
+    <p class="warning">Sistem ini bukan menambahkan ritual. Sistem ini memaksa agent memilih protokol yang tepat sebelum eksekusi, lalu membuktikan hasil lewat artifact yang bisa diaudit.</p>
+    <h3>Acceptance Criteria</h3>
+    <ul>
+      <li>Setiap task punya <code>Protocol Precheck</code>.</li>
+      <li>Setiap mode punya artifact wajib.</li>
+      <li>Research claims tidak boleh tanpa MAS evidence.</li>
+      <li>Capacity/team decisions tidak boleh tanpa C4-ET gate.</li>
+      <li>Durable knowledge selalu masuk LLM Wiki layer.</li>
+      <li>Implementation selalu pakai Boris Workflow: plan → execute → verify.</li>
+      <li>Session close selalu pakai project-management closure: bd, git, progress, handoff.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="grid" id="protocols">
+  <div class="card span12"><h2>Protocol Trigger Matrix</h2><div class="matrix">
+    <div class="proto"><div class="tag">LLM Wiki Karpathy</div><h3>Durable Knowledge</h3><p>Trigger: ingest docs, decisions, project memory, architecture, source summaries.</p><b>Artifacts:</b><ul><li>SourceID/provenance</li><li>wiki page</li><li>wiki/index update</li><li>wiki/log append</li></ul></div>
+    <div class="proto"><div class="tag">MAS Evidence-First</div><h3>Factual Claims</h3><p>Trigger: factual, causal, benchmark, API, vendor, compliance, trading performance claims.</p><b>Artifacts:</b><ul><li>atomic claims</li><li>primary evidence anchors</li><li>red-team note</li><li>supported/unresolved status</li></ul></div>
+    <div class="proto"><div class="tag">C4-ET Gate</div><h3>Capacity Decisions</h3><p>Trigger: team, bottleneck, WIP, lead time, blocked work, deadlock, staffing.</p><b>Artifacts:</b><ul><li>A1-A4</li><li>B1-B4</li><li>ET1-ET3</li><li>GO/NO-GO/GO-TRIAL</li></ul></div>
+    <div class="proto"><div class="tag">Boris Workflow</div><h3>Execution Discipline</h3><p>Trigger: every implementation or docs/process change.</p><b>Artifacts:</b><ul><li>plan first</li><li>bounded scope</li><li>diff review</li><li>verified done</li></ul></div>
+    <div class="proto"><div class="tag">AutoResearch</div><h3>Research Loop</h3><p>Trigger: research task, comparison, standards, external source analysis.</p><b>Artifacts:</b><ul><li>research question</li><li>retrieval criteria</li><li>source table</li><li>synthesis + unresolved</li></ul></div>
+    <div class="proto"><div class="tag">Skills + PM</div><h3>Reusable Ops</h3><p>Trigger: repeated workflow, project task, release, handoff.</p><b>Artifacts:</b><ul><li>loaded skills</li><li>bd issue</li><li>progress update</li><li>commit/push</li></ul></div>
+  </div></div>
+</section>
+
+<section class="grid" id="mockups">
+  <div class="card span6">
+    <h2>Mockup: Protocol Precheck Packet</h2>
+    <div class="mock"><div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="muted">protocol-precheck.md</span></div><div class="mockbody">
+      <div class="row"><div class="label">User Goal</div><div class="value">Build / research / audit requested item</div></div>
+      <div class="row"><div class="label">Primary Mode</div><div class="value">Implementation | Research | Wiki | C4-ET | Review | Release</div></div>
+      <div class="row"><div class="label">Protocols Active</div><div class="value">Boris + MAS + Wiki + Skills + PM</div></div>
+      <div class="row"><div class="label">Evidence Standard</div><div class="value">Primary-source only / local file evidence / DATA MISSING</div></div>
+      <div class="row"><div class="label">Stop Conditions</div><div class="value">secrets, unknown tests, missing evidence, unsafe git/bd</div></div>
+      <div class="row"><div class="label">Verification</div><div class="value">tests, parser, browser, diff, citations, gate result</div></div>
+    </div></div>
+  </div>
+  <div class="card span6">
+    <h2>Mockup: Agent Final Handoff</h2>
+    <div class="mock"><div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="muted">handoff-output.txt</span></div><div class="mockbody">
+      <div class="row"><div class="label">Complete</div><div class="value">What changed, exact paths, issue ID</div></div>
+      <div class="row"><div class="label">Protocols Used</div><div class="value">Boris plan, MAS evidence, Wiki log, PM closure</div></div>
+      <div class="row"><div class="label">Checks Run</div><div class="value">commands + result, browser/no-console-error if HTML</div></div>
+      <div class="row"><div class="label">Residual Risk</div><div class="value">unknown tests, unresolved claims, blocked items</div></div>
+      <div class="row"><div class="label">Git/bd</div><div class="value">bd closed/synced, commit SHA, branch up to date</div></div>
+    </div></div>
+  </div>
+</section>
+
+<section class="grid" id="tasks">
+  <div class="card span12"><h2>Bite-Sized Implementation Tasks</h2>
+    <div class="task"><div class="tasknum">1</div><div><h3>Create protocol system spec</h3><p>Write <code>docs/process/PROTOCOL_AWARE_EXECUTION_SYSTEM.md</code> with lifecycle, routing precedence, artifacts, stop rules, and examples.</p><div class="small">Verify: file exists, required headings present.</div></div><span class="badge">docs</span></div>
+    <div class="task"><div class="tasknum">2</div><div><h3>Create templates</h3><p>Add <code>PROTOCOL_PRECHECK_TEMPLATE.md</code> and <code>PROTOCOL_EXECUTION_PACKET_TEMPLATE.md</code> so future sessions can copy/fill them.</p><div class="small">Verify: template fields cover goal, mode, protocols, files, evidence, verification, handoff.</div></div><span class="badge">templates</span></div>
+    <div class="task"><div class="tasknum">3</div><div><h3>Patch AGENTS.md</h3><p>Add mandatory Protocol Precheck before planning/execution and clarify that multiple protocols can be active, but exactly one primary mode is selected.</p><div class="small">Verify: AGENTS contains new mandatory section and links spec.</div></div><span class="badge">constitution</span></div>
+    <div class="task"><div class="tasknum">4</div><div><h3>Patch routing and gates</h3><p>Update <code>TASK_ROUTING.md</code> and <code>QUALITY_GATES.md</code> with Gate -1 and trigger precedence.</p><div class="small">Verify: routing table includes LLM Wiki, MAS, C4-ET, Boris, AutoResearch, Skills, PM.</div></div><span class="badge">router</span></div>
+    <div class="task"><div class="tasknum">5</div><div><h3>Patch project plan and skills map</h3><p>Update <code>PLANS.md</code> and <code>skills/README.md</code> so the system is visible in roadmap and skill routing.</p><div class="small">Verify: Framework Compliance Matrix references protocol-aware system.</div></div><span class="badge">pm</span></div>
+    <div class="task"><div class="tasknum">6</div><div><h3>Update wiki and progress</h3><p>Index the new process pages in <code>wiki/index.md</code>, append <code>wiki/log.md</code>, and update progress baseline evidence.</p><div class="small">Verify: durable process change logged; no raw sources mutated.</div></div><span class="badge">wiki</span></div>
+    <div class="task"><div class="tasknum">7</div><div><h3>Release closure</h3><p>Run docs checks, inspect diff, close bd issue, sync, commit, pull/rebase, push, verify branch up to date.</p><div class="small">Verify: <code>git status</code> clean except intentionally untracked source corpora.</div></div><span class="badge">release</span></div>
+  </div>
+</section>
+
+<section class="grid" id="code">
+  <div class="card span12"><h2>Implementation Snippets</h2>
+    <div class="tabs"><button class="active" data-tab="router">Router Pseudocode</button><button data-tab="precheck">Precheck Template</button><button data-tab="agents">AGENTS Patch</button><button data-tab="gate">Quality Gate</button></div>
+    <div id="router" class="tabpane active"><pre>def route_task(user_request):
+    protocols = []
+    primary_mode = classify_primary_mode(user_request)
+
+    if has_factual_or_research_claims(user_request):
+        protocols += ["MAS Evidence-First", "AutoResearch"]
+    if has_capacity_or_bottleneck_terms(user_request):
+        protocols += ["C4-ET Gate"]
+    if creates_durable_knowledge(user_request):
+        protocols += ["LLM Wiki Karpathy"]
+    if changes_code_docs_or_process(user_request):
+        protocols += ["Boris Workflow"]
+    if workflow_is_repeated_or_tool_specific(user_request):
+        protocols += ["Skills"]
+    protocols += ["Project Management"]
+
+    return ProtocolPacket(primary_mode, unique(protocols), required_artifacts(primary_mode, protocols))</pre></div>
+    <div id="precheck" class="tabpane"><pre># Protocol Precheck
+
+- Goal:
+- Expected output:
+- Primary mode:
+- Supporting protocols:
+- Active skills loaded:
+- Evidence standard:
+- Files likely touched:
+- Verification commands/checks:
+- bd issue:
+- Stop conditions checked:
+- Progress metric expected to change:</pre></div>
+    <div id="agents" class="tabpane"><pre>## Mandatory Protocol Precheck
+
+Before any substantial task, run the protocol router:
+1. Select exactly one primary mode.
+2. Activate all supporting protocols required by triggers.
+3. Produce a short precheck packet.
+4. Stop if evidence, tests, secrets, or git/bd safety are unresolved.
+
+Use docs/process/PROTOCOL_AWARE_EXECUTION_SYSTEM.md as source of truth.</pre></div>
+    <div id="gate" class="tabpane"><pre>## Gate -1 - Protocol Awareness
+
+- User goal classified.
+- Primary mode selected.
+- Supporting protocols selected.
+- Required artifacts listed.
+- Relevant skills loaded.
+- Evidence/test/git/bd stop conditions checked.
+- Proceed / Stop decision recorded.</pre></div>
+  </div>
+</section>
+
+<section class="grid" id="evidence">
+  <div class="card span12"><h2>Source Excerpts Used For This Plan</h2><p class="muted">These are direct local excerpts so the plan is grounded in the current workspace, not invented.</p></div>
+  <div class="card span6"><h3>AGENTS.md — Active Frameworks</h3><pre>   8| ## 1. Active Frameworks
+   9| 
+  10| - LLM Wiki: maintain `wiki/index.md`, `wiki/log.md`, and source provenance.
+  11| - MAS Evidence-First: use only primary sources for factual/research/compliance claims.
+  12| - AutoResearch: use for research tasks, benchmarks, technical comparison, standards, APIs.
+  13| - C4-ET: trigger only for team/capacity/bottleneck/WIP/lead-time/deadlock decisions.
+  14| - Boris-style workflow: plan first, parallelize only when explicitly requested, verify before done.
+  15| - Skills: use task-specific skills when available.
+  16| </pre></div>
+  <div class="card span6"><h3>TASK_ROUTING.md — Routing Table</h3><pre>   5| ## Routing Table
+   6| 
+   7| | User Intent | Primary Mode | Required Framework | Required Artifacts |
+   8| |---|---|---|---|
+   9| | Change code or scripts | Implementation | Boris-style workflow | Plan, diff, tests/checks, progress update |
+  10| | Fix bug | Implementation | Review/Audit support | Repro or hypothesis, patch, tests, risk note |
+  11| | Add tests | Implementation | Test skill | Test files, test command, result |
+  12| | Explain code | Review/Audit | None unless factual external claims appear | File references, limits |
+  13| | Review code/docs | Review/Audit | Review skill | Findings, severity, file references, residual risk |
+  14| | Research a topic | Research / AutoResearch | MAS Evidence-First | Research plan, primary evidence, synthesis, unresolved claims |
+  15| | Compare tools/APIs/standards | Research / AutoResearch | MAS Evidence-First | Primary docs/specs, comparison table, unresolved claims |
+  16| | Ingest source into memory | Wiki Maintenance | LLM Wiki | SourceID, source page, index update, log entry |
+  17| | Update process docs | Wiki Maintenance | LLM Wiki + Review/Audit | Process file update, index/log if durable |
+  18| | Decide team/capacity | C4-ET Gate | C4-ET | A1-A4, B1-B4, ET1-ET3, GO/NO-GO/GO-TRIAL |
+  19| | Release or finish session | Release / Handoff | Release skill | Quality gates, issue status, git status, handoff |</pre></div>
+  <div class="card span6"><h3>QUALITY_GATES.md — Gates</h3><pre>   5| ## Gate 0 - Safety
+   6| 
+   7| - No credential files read unless explicitly required and approved by the user.
+   8| - No raw wiki source mutated.
+   9| - No unrelated files intentionally changed.
+  10| - No financial advice; trading output is research only.
+  11| 
+  12| ## Gate 1 - Scope
+  13| 
+  14| - Goal restated.
+  15| - Mode selected.
+  16| - Files likely touched identified.
+  17| - Verification plan identified.
+  18| - Stop conditions checked.
+  19| 
+  20| ## Gate 2 - Evidence
+  21| 
+  22| Required when factual, research, compliance, benchmark, standard, API, or vendor claims appear:
+  23| 
+  24| - Claims are atomic.
+  25| - Primary source standard is defined.
+  26| - Evidence packets cite source and location.
+  27| - Unsupported claims are marked unresolved.
+  28| - Red-team or review pass checks overclaiming.
+  29| </pre></div>
+  <div class="card span6"><h3>PLANS.md — Compliance Matrix</h3><pre>  94| ## Framework Compliance Matrix
+  95| 
+  96| | Framework | Trigger | Required Artifacts | Current Baseline | Gap |
+  97| |---|---|---|---|---|
+  98| | AGENTS.md constitution | Every session | `AGENTS.md` | Initialized | Needs adoption in future sessions |
+  99| | LLM Wiki Karpathy | Durable memory, ingest, synthesis | `wiki/index.md`, `wiki/log.md`, `wiki/schema.md`, `wiki/raw/README.md` | Initialized at root; legacy wiki exists | Legacy and root wiki need reconciliation |
+ 100| | MAS Evidence-First | Factual, research, performance, compliance claims | Atomic claims, evidence packets, red-team, judge | Template initialized | Needs validation on a real factual claim |
+ 101| | AutoResearch | Research tasks and optimization loops | Research plan, retrieval log, synthesis, citations, unresolved claims | Template initialized | Needs validation on a real research task |
+ 102| | C4-ET | Capacity, team, WIP, lead-time, blocked-work, deadlock | Data audit, metrics, gate decision, one-pager | Trigger limited by constitution | No active capacity metrics baseline |
+ 103| | Skills | Repeated workflows | `skills/README.md` or installed `.codex/skills` | Map initialized | Root skills are mapped, not installed |
+ 104| | Universal process OS | All task types | `docs/process/OPERATING_SYSTEM.md`, `TASK_ROUTING.md`, `QUALITY_GATES.md` | GO-TRIAL review task validated | Needs implementation and research trials |</pre></div>
+  <div class="card span6"><h3>wiki/index.md — Required Entry Points</h3><pre>  10| ## Required Entry Points
+  11| 
+  12| | Path | Purpose | Status |
+  13| |---|---|---|
+  14| | `wiki/index.md` | Catalog of active root wiki pages | Initialized |
+  15| | `wiki/log.md` | Append-only audit trail | Initialized |
+  16| | `wiki/schema.md` | Wiki structure and invariants | Initialized |
+  17| | `wiki/raw/README.md` | Raw source immutability policy | Initialized |
+  18| | `LLM Wiki Karpathy/INDEX.md` | Legacy compiled wiki | Existing legacy memory |
+  19| | `LLM Wiki Karpathy/00_SOURCE_REGISTRY.md` | Legacy source registry | Existing legacy memory |
+  20| | `LLM Wiki Karpathy/UNRESOLVED.md` | Legacy unresolved questions | Existing legacy memory |</pre></div>
+  <div class="card span6"><h3>skills/README.md — Skills Map</h3><pre>   5| ## Required Workflow Skills
+   6| 
+   7| | Skill | Trigger | Existing Reference | Required Output |
+   8| |---|---|---|---|
+   9| | `test` | Code or executable workflow changed | No root skill found | Test command, result, failures, next action |
+  10| | `review` | Before handoff, PR, or risky change | No root skill found | Findings, risks, missing tests, residual risk |
+  11| | `research` | Research, factual, trading, compliance, performance claims | MAS and AutoResearch bundles | Research plan, evidence packets, citations, unresolved claims |
+  12| | `docs` | Durable docs/wiki/process updates | `llm-wiki-builder`, `trading-research-wiki` references | Updated docs, index/log updates |
+  13| | `c4-et-gate` | Capacity, team, WIP, lead-time, bottleneck, blocked-work, deadlock | `c4et-gate`, `c4et-*` references | Data audit, metrics, gate decision, one-pager |
+  14| | `release` | Session close, publish, commit, push | No root skill found | Quality gates, issue updates, commit/push status, handoff |
+  15| | `router` | Any substantial task intake | `docs/process/TASK_ROUTING.md` | Primary mode, supporting modes, required artifacts |
+  16| | `quality-gates` | Before marking work done | `docs/process/QUALITY_GATES.md` | Gate pass/fail status and blockers |
+  17| </pre></div>
+</section>
+
+<section class="grid" id="verification">
+  <div class="card span6"><h2>Verification Plan</h2><ul>
+    <li>HTML exists and parses with Python <code>html.parser</code>.</li>
+    <li>Required section anchors exist: overview, architecture, protocols, mockups, tasks, code, evidence, verification.</li>
+    <li>Open in browser and confirm no console errors.</li>
+    <li>Visual inspection: readable, no broken primary layout.</li>
+    <li>Git diff scoped to this HTML plan unless user approves implementation edits.</li>
+  </ul></div>
+  <div class="card span6"><h2>Live Repo State When Drafted</h2><h3>git status</h3><pre>## main...origin/main
+ M .beads/issues.jsonl
+?? Bahan/
+?? &quot;Claude Up Skills/&quot;
+?? &quot;LLM Wiki Karpathy/&quot;</pre><h3>bd ready</h3><pre>📋 Ready work (1 issues with no blockers):
+
+1. [● P1] [task] Karpathy-7t0: Install protocol-aware project execution system</pre></div>
+  <div class="card span12"><h2>Decision Needed After Reading</h2><p class="lead">If this plan is accepted, the next execution step is to implement Tasks 1-7 and make <code>docs/process/PROTOCOL_AWARE_EXECUTION_SYSTEM.md</code> the operational source of truth.</p></div>
+</section>
+</main>
+<script>
+document.querySelectorAll('button[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('button[data-tab]').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tabpane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
