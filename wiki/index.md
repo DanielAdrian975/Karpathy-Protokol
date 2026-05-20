@@ -36,6 +36,9 @@ This root wiki is the normalized project memory for future Codex work. It comple
 | `docs/process/MAS_EVIDENCE_PACKET_TRIAL.md` | Local MAS Evidence-First workflow validation using primary local evidence. |
 | `docs/process/AUTORESEARCH_ARTIFACT_TRIAL.md` | Local AutoResearch workflow validation with bounded scope, evidence table, synthesis, and unresolved claims. |
 | `docs/process/C4ET_SOURCE_CORPUS_GATE.md` | C4-ET dry-run decision blocking broad source corpus staging. |
+| `docs/process/PMO_PROMPTING_GUIDE.html` | Human-readable PMO prompting guide from intake/planning through execution, closure, and evaluation. |
+| `wiki/KARPATHY_LLM_WIKI_HUMAN.html` | Human-readable Karpathy-style LLM Wiki portal with entity/topic/query surfaces and wiki roadmap. |
+| `PROJECT_PMO_PROMPTING_WIKI.html` | Root HTML portal linking PMO prompting guide and LLM Wiki Karpathy HTML. |
 | `CLAUDE.md` | Root legacy orientation rules for trading research workspace behavior. |
 | `MASTER_INDEX.md` | Root legacy orientation index for trading research workspace context and routing. |
 

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMO Prompting Guide — Planning to Evaluation</title>
+<style>
+:root{--bg:#0b1020;--panel:#111831;--panel2:#17203d;--text:#edf2ff;--muted:#aab6d3;--line:#2a365f;--blue:#78a6ff;--green:#52d39c;--yellow:#ffd166;--red:#ff6b6b;--code:#07111f}*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#070b16,var(--bg));color:var(--text);line-height:1.55}header{padding:38px 28px;border-bottom:1px solid var(--line);background:radial-gradient(circle at top left,rgba(120,166,255,.24),transparent 40%),var(--bg)}main{max-width:1180px;margin:auto;padding:26px}h1{margin:0 0 8px;font-size:clamp(28px,4vw,46px)}h2{margin-top:34px;padding-top:16px;border-top:1px solid var(--line)}p,li,td{color:var(--muted)}.sub{max-width:900px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}.card{background:linear-gradient(180deg,var(--panel),#0d1428);border:1px solid var(--line);border-radius:16px;padding:18px}.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(120,166,255,.13);border:1px solid rgba(120,166,255,.25);margin:2px;color:#cfe0ff}table{width:100%;border-collapse:collapse;margin:14px 0 22px;border:1px solid var(--line)}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--panel2);text-align:left;color:white}code,pre{background:var(--code);color:#e7efff;border:1px solid var(--line);border-radius:10px}code{padding:2px 5px}pre{padding:14px;overflow:auto;white-space:pre-wrap}.toc{background:rgba(120,166,255,.08);border:1px solid rgba(120,166,255,.22);border-radius:14px;padding:14px 18px}.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+</style></head><body>
+<header><h1>PMO Prompting Guide — Planning to Evaluation</h1><div class="sub">Static HTML. Generated 2026-05-20. Panduan prompting operasional untuk workspace Karpathy memakai PMO Microtask Governance.</div></header>
+<main>
+<section class="toc"><b>Tujuan:</b> mengubah request mentah menjadi pekerjaan terkelola: punya ID, owner, scope, evidence, closure, evaluasi. Alur wajib: <span class="pill">INTAKE</span><span class="pill">TRIAGE</span><span class="pill">ASSIGNMENT</span><span class="pill">EXECUTION</span><span class="pill">CLOSURE</span><span class="pill">EVALUATION</span></section>
+<h2>1. Prinsip PMO Prompting</h2>
+<div class="grid"><div class="card"><h3>Control tower</h3><p>Prompt harus meminta status yang bisa diverifikasi: file path, issue ID, check result, risk, next action.</p></div><div class="card"><h3>Dispatch office</h3><p>Prompt harus menetapkan owner, accountable owner, priority lane, capacity risk, dan batas scope.</p></div><div class="card"><h3>Evidence gate</h3><p>Tidak ada klaim selesai tanpa bukti: file exists, diff, test/check result, wiki log, bd close, commit/push.</p></div><div class="card"><h3>Single source of truth</h3><p><code>bd</code> untuk issue; <code>docs/process/</code> untuk proses; <code>wiki/</code> untuk knowledge; Git untuk perubahan.</p></div></div>
+<h2>2. Prompt Master</h2><pre>Anda adalah PMO Microtask Governance Agent untuk workspace Karpathy.
+Ikuti alur: INTAKE → TRIAGE → ASSIGNMENT → EXECUTION → CLOSURE → EVALUATION.
+Gunakan protocol routing sebelum bekerja.
+Output harus verifiable: path file, issue ID, checks run, diff summary, risk, next action.
+Jangan klaim selesai tanpa evidence.
+Jika task membuat durable knowledge, update LLM Wiki/root wiki dan append wiki/log.md.</pre>
+<h2>3. Intake Prompt</h2><pre>INTAKE
+- Request mentah:
+- Tujuan project:
+- Output diminta:
+- Deadline / urgency:
+- Dampak jika tidak dikerjakan:
+- File/sistem boleh disentuh:
+- File/sistem tidak boleh disentuh:
+- Evidence of done:
+- Buat/claim bd issue dan tampilkan ID.</pre>
+<table><tr><th>Field</th><th>Fungsi</th><th>Contoh</th></tr><tr><td>Summary</td><td>Nama task untuk dashboard/bd</td><td>Create PMO prompting guide HTML</td></tr><tr><td>Output</td><td>Mencegah diskusi tanpa deliverable</td><td>HTML + wiki log + commit</td></tr><tr><td>Scope boundary</td><td>Mencegah broad staging/source mutation</td><td>Touch docs/wiki only</td></tr><tr><td>Evidence</td><td>Basis closure</td><td>File exists, diff inspected, pushed</td></tr></table>
+<h2>4. Triage Prompt</h2><pre>TRIAGE
+Pilih tepat satu primary mode:
+1. Implementation
+2. Research / AutoResearch
+3. C4-ET Gate
+4. Wiki Maintenance
+5. Review / Audit
+6. Release / Handoff
+
+Aktifkan supporting protocol:
+- LLM Wiki Karpathy untuk durable knowledge
+- MAS Evidence-First untuk factual/performance/vendor claims
+- C4-ET untuk capacity/WIP/bottleneck/deadlock
+- Boris Workflow untuk implementation/docs/process execution
+- Project Management Closure untuk bd/git/progress</pre>
+<h2>5. Planning Prompt</h2><pre>BORIS / PMO PLAN
+- Goal:
+- Active frameworks:
+- Assumptions:
+- Write scope:
+- Files likely touched:
+- Verification plan:
+- Risks:
+- Progress metric:
+- Stop conditions:
+- Proceed/Stop decision:</pre>
+<h2>6. Assignment Prompt</h2><pre>ASSIGNMENT
+- Owner teknis:
+- Accountable owner:
+- Priority lane: P1/P2/P3/P4
+- Due date / SLA:
+- Dependency:
+- Capacity risk:
+- Definition of done:
+- Update cadence:</pre>
+<table><tr><th>Lane</th><th>Respons baseline</th><th>Contoh</th></tr><tr><td>P1</td><td>≤1 jam</td><td>Failure/data loss risk</td></tr><tr><td>P2</td><td>≤4 jam</td><td>Dokumentasi operasional penting</td></tr><tr><td>P3</td><td>≤1 hari kerja</td><td>Cleanup/migration/validation</td></tr><tr><td>P4</td><td>Batch mingguan</td><td>Nice-to-have</td></tr></table>
+<h2>7. Execution Prompt</h2><pre>EXECUTION
+Kerjakan hanya dalam scope.
+Untuk setiap file yang dibuat/diubah, catat:
+- Path
+- Tujuan perubahan
+- Source anchor
+- Risiko
+Setelah perubahan, jalankan verification plan dan tampilkan hasil.</pre>
+<h2>8. Closure Prompt</h2><pre>CLOSURE
+- Acceptance criteria satisfied? yes/no
+- Files changed:
+- Checks run:
+- bd issue state:
+- Git diff summary:
+- Commit ID:
+- Push status:
+- Residual risks:
+- Follow-up issues:</pre>
+<h2>9. Evaluation Prompt</h2><pre>EVALUATION
+Score 0-2:
+- Intake completeness
+- Routing accuracy
+- Plan quality
+- Evidence quality
+- Scope control
+- Verification quality
+- Wiki/progress hygiene
+- Closure hygiene
+Final verdict: ACCEPT / ACCEPT WITH RISK / REWORK.</pre>
+<h2>10. KPI PMO untuk Prompting</h2><table><tr><th>KPI</th><th>Target hijau</th><th>Prompt check</th></tr><tr><td>Intake completeness</td><td>≥80%</td><td>Field wajib apa yang kosong?</td></tr><tr><td>Triage routing accuracy</td><td>≥90%</td><td>Primary mode tepat satu?</td></tr><tr><td>Closure rate</td><td>≥75%</td><td>Apa bukti done?</td></tr><tr><td>Hidden work ratio</td><td>≤10%</td><td>Sudah ada bd issue?</td></tr><tr><td>Reopen rate</td><td>≤5%</td><td>Acceptance criteria objektif?</td></tr><tr><td>Wiki freshness</td><td>≥85%</td><td>wiki/log.md sudah append?</td></tr></table>
+<h2>11. Prompt Pack Siap Pakai</h2><div class="grid"><div class="card"><h3>Perencanaan</h3><pre>Rancang plan PMO. Pakai intake→triage→assignment→execution→closure→evaluation. Tampilkan primary mode, protocols, files, verification, stop conditions.</pre></div><div class="card"><h3>Eksekusi</h3><pre>Eksekusi plan scoped. Jangan broad-stage source corpus. Setelah edit, verify, inspect diff, update wiki/log, close bd, commit, push.</pre></div><div class="card"><h3>Audit</h3><pre>Audit hasil terhadap PMO KPI: intake, routing, scope, evidence, closure. Beri verdict ACCEPT/REWORK dengan bukti.</pre></div><div class="card"><h3>Wiki</h3><pre>Buat ringkasan Karpathy-style: index-first, 3-5 kalimat, source anchors, claims, unresolved, links. Raw source immutable.</pre></div></div>
+<p><b>Source anchors:</b> <code>deep-research-report(1).md</code>, <code>PROJECT_DASHBOARD.md</code>, <code>AGENTS.md</code>, <code>docs/process/TASK_ROUTING.md</code>, <code>wiki/index.md</code>.</p>
+</main></body></html>

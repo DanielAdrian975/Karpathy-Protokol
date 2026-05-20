@@ -126,3 +126,14 @@ Closed the remote/upstream blocker after the user provided the project remote:
 - Broad source corpus staging remains NO-GO; only audited tracked commits were pushed.
 
 Decision recorded as `D-0018`. No raw source corpus was ingested.
+
+## 2026-05-20 | documentation | pmo-prompting-html-wiki | PMO prompting guide and human LLM Wiki HTML
+
+Created human-readable HTML documentation requested by the user:
+
+- `docs/process/PMO_PROMPTING_GUIDE.html`
+- `wiki/KARPATHY_LLM_WIKI_HUMAN.html`
+- `PROJECT_PMO_PROMPTING_WIKI.html`
+
+The guide converts PMO Microtask Governance into prompting workflows from intake/planning through assignment, execution, closure, and evaluation. The wiki HTML is a Karpathy-style index-first portal over existing legacy/root wiki anchors. Raw source files were not mutated.
+
