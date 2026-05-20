@@ -137,3 +137,6 @@ Created human-readable HTML documentation requested by the user:
 
 The guide converts PMO Microtask Governance into prompting workflows from intake/planning through assignment, execution, closure, and evaluation. The wiki HTML is a Karpathy-style index-first portal over existing legacy/root wiki anchors. Raw source files were not mutated.
 
+## 2026-05-20 | documentation | interactive-prompt-advisor | Context-to-prompt advisor page
+
+Created `docs/process/INTERACTIVE_PROMPT_ADVISOR.html`, a static interactive page where the user enters context, goal, output, constraints, and evidence requirements. The page generates a prompt explanation and a ready-to-use prompt in one code block, with copy/download helpers and PMO protocol routing. Updated `PROJECT_PMO_PROMPTING_WIKI.html`, `wiki/index.md`, and `docs/process/PROGRESS.md`. Raw source files were not mutated.

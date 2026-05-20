@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interactive Prompt Advisor — PMO + Karpathy</title>
+<style>
+:root{--bg:#0b1020;--panel:#111831;--panel2:#17203d;--text:#edf2ff;--muted:#aab6d3;--line:#2a365f;--blue:#78a6ff;--green:#52d39c;--yellow:#ffd166;--red:#ff6b6b;--code:#07111f}*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#070b16,var(--bg));color:var(--text);line-height:1.55}header{padding:34px 28px;border-bottom:1px solid var(--line);background:radial-gradient(circle at top left,rgba(120,166,255,.24),transparent 40%),var(--bg)}main{max-width:1220px;margin:auto;padding:24px}h1{margin:0 0 8px;font-size:clamp(28px,4vw,44px)}h2{margin-top:0}p,li,label,td{color:var(--muted)}a{color:var(--blue)}.sub{max-width:940px;color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(300px,460px) 1fr;gap:18px;align-items:start}.card{background:linear-gradient(180deg,var(--panel),#0d1428);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 12px 34px rgba(0,0,0,.25)}.field{margin:12px 0}label{display:block;font-weight:650;margin-bottom:6px;color:#dfe7ff}input,textarea,select{width:100%;background:#07111f;color:#edf2ff;border:1px solid #30406f;border-radius:10px;padding:10px 11px;font:inherit}textarea{min-height:92px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}button{background:#2d62ff;color:white;border:none;border-radius:10px;padding:10px 14px;font-weight:750;cursor:pointer}button.secondary{background:#1b274b;color:#dfe7ff;border:1px solid var(--line)}button.warn{background:#6b4b00}.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(120,166,255,.13);border:1px solid rgba(120,166,255,.25);margin:2px;color:#cfe0ff;font-size:12px}.hint{font-size:13px;color:#8fa0c7}.output{white-space:pre-wrap;background:var(--code);border:1px solid var(--line);border-radius:14px;padding:16px;min-height:560px;color:#e7efff;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;overflow:auto}.mini{font-size:13px}.ok{color:var(--green)}.warntext{color:var(--yellow)}.bad{color:var(--red)}.footer{margin-top:18px;color:var(--muted);font-size:13px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.badgebar{margin:12px 0}@media(max-width:900px){.layout{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<h1>Interactive Prompt Advisor</h1>
+<div class="sub">Masukkan konteks. Halaman ini memberi saran struktur prompt, penjelasan kenapa, lalu prompt siap pakai dalam satu code block. Offline, tanpa API, tanpa mengirim data keluar browser.</div>
+<div class="badgebar"><span class="pill">PMO</span><span class="pill">Boris Plan</span><span class="pill">LLM Wiki</span><span class="pill">Evidence-First</span><span class="pill">Closure</span></div>
+</header>
+<main>
+<div class="layout">
+<section class="card">
+<h2>Input konteks</h2>
+<div class="field"><label for="context">Konteks mentah</label><textarea id="context" placeholder="Tempel konteks, masalah, data, file path, atau request user di sini..."></textarea><div class="hint">Semakin spesifik, semakin operasional prompt yang dihasilkan.</div></div>
+<div class="row">
+<div class="field"><label for="goal">Tujuan</label><input id="goal" placeholder="Contoh: buat audit data primer"></div>
+<div class="field"><label for="audience">Target agent/audience</label><input id="audience" value="AI coding/research agent"></div>
+</div>
+<div class="row">
+<div class="field"><label for="mode">Mode utama</label><select id="mode"><option value="auto">Auto-detect</option><option>Implementation</option><option>Research / AutoResearch</option><option>Wiki Maintenance</option><option>Review / Audit</option><option>C4-ET Gate</option><option>Release / Handoff</option></select></div>
+<div class="field"><label for="priority">Priority lane</label><select id="priority"><option>P2</option><option>P1</option><option>P3</option><option>P4</option></select></div>
+</div>
+<div class="field"><label for="output">Output yang diinginkan</label><textarea id="output" placeholder="Contoh: HTML report, markdown plan, evidence packet, patch code, bd issue, wiki page..."></textarea></div>
+<div class="field"><label for="constraints">Batasan / larangan</label><textarea id="constraints" placeholder="Contoh: jangan baca secrets, jangan broad-stage Bahan/, raw source immutable, path harus Windows benar..."></textarea></div>
+<div class="field"><label for="evidence">Evidence / verifikasi wajib</label><textarea id="evidence" placeholder="Contoh: file exists, tests pass, git diff inspected, wiki/log updated, bd closed..."></textarea></div>
+<div class="row">
+<div class="field"><label for="tone">Gaya jawaban</label><select id="tone"><option>singkat, tegas, teknis</option><option>detail, step-by-step</option><option>audit findings first</option><option>executive summary</option></select></div>
+<div class="field"><label for="lang">Bahasa</label><select id="lang"><option>Bahasa Indonesia</option><option>English</option><option>Mixed technical Indonesian-English</option></select></div>
+</div>
+<div class="actions"><button onclick="generatePrompt()">Generate prompt</button><button class="secondary" onclick="copyOutput()">Copy hasil</button><button class="secondary" onclick="loadExample()">Isi contoh</button><button class="warn" onclick="clearAll()">Clear</button></div>
+<p class="mini">Format output selalu satu code block berisi dua bagian: <b>Penjelasan prompt</b> dan <b>Prompt siap pakai</b>.</p>
+</section>
+<section class="card">
+<div class="toolbar"><button class="secondary" onclick="copyPromptOnly()">Copy prompt siap pakai saja</button><button class="secondary" onclick="downloadTxt()">Download .txt</button></div>
+<h2>Hasil</h2>
+<pre id="result" class="output">Isi konteks di kiri lalu klik “Generate prompt”.</pre>
+</section>
+</div>
+<div class="footer">Source anchors: docs/process/PMO_PROMPTING_GUIDE.html, docs/process/TASK_ROUTING.md, wiki/index.md. Halaman ini hanya static HTML + JavaScript lokal.</div>
+</main>
+<script>
+function val(id){return document.getElementById(id).value.trim()}
+function inferMode(text, selected){
+ if(selected && selected !== 'auto') return selected;
+ const t=text.toLowerCase();
+ if(/kapasitas|wip|bottleneck|lead.?time|deadlock|team|staff/.test(t)) return 'C4-ET Gate';
+ if(/wiki|knowledge|sourceid|provenance|dokumentasi|html|roadmap/.test(t)) return 'Wiki Maintenance';
+ if(/research|riset|benchmark|compare|vendor|api|standar|paper/.test(t)) return 'Research / AutoResearch';
+ if(/audit|review|cek|inspect|evaluasi|quality/.test(t)) return 'Review / Audit';
+ if(/commit|push|release|handoff|close|bd sync/.test(t)) return 'Release / Handoff';
+ if(/code|script|fix|bug|implement|refactor|test/.test(t)) return 'Implementation';
+ return 'Review / Audit';
+}
+function protocolsFor(mode, context){
+ const p=['Project Management Closure'];
+ if(mode==='Implementation') p.unshift('Boris Workflow');
+ if(mode==='Wiki Maintenance') p.unshift('LLM Wiki Karpathy','Boris Workflow');
+ if(mode==='Research / AutoResearch') p.unshift('MAS Evidence-First','AutoResearch');
+ if(mode==='Review / Audit') p.unshift('Review/Audit','MAS Evidence-First bila ada klaim faktual');
+ if(mode==='C4-ET Gate') p.unshift('C4-ET');
+ if(mode==='Release / Handoff') p.unshift('Release/Handoff');
+ if(/wiki|knowledge|source|provenance|html|dokumentasi/i.test(context) && !p.includes('LLM Wiki Karpathy')) p.unshift('LLM Wiki Karpathy');
+ return [...new Set(p)];
+}
+function generatePrompt(){
+ const context=val('context'), goal=val('goal'), audience=val('audience')||'AI agent', output=val('output'), constraints=val('constraints'), evidence=val('evidence'), priority=val('priority'), tone=val('tone'), lang=val('lang');
+ const mode=inferMode([context,goal,output,constraints].join(' '), val('mode'));
+ const protocols=protocolsFor(mode, [context,goal,output,constraints].join(' ')).join(', ');
+ const g=goal||'[ISI TUJUAN SPESIFIK]';
+ const o=output||'[ISI OUTPUT YANG DIHARAPKAN]';
+ const c=context||'[TEMPEL KONTEKS DI SINI]';
+ const cons=constraints||'Jangan membaca secrets/credentials. Jangan broad-stage source corpus. Jangan klaim selesai tanpa verifikasi.';
+ const ev=evidence||'File exists/path benar, diff inspected, checks run atau alasan jika tidak ada, wiki/log updated bila durable, bd/git closure bila repo safe.';
+ const explanation=`Penjelasan prompt:\n- Mode utama dipilih: ${mode}.\n- Protocol aktif: ${protocols}.\n- Prompt memaksa agent mulai dari intake dan triage agar tidak langsung eksekusi tanpa scope.\n- Bagian evidence/verification mencegah klaim selesai tanpa bukti.\n- Bagian stop conditions menjaga agar agent berhenti jika butuh secrets, evidence kurang, test command unknown, atau git/bd tidak safe.\n- Output diminta eksplisit: ${o}.`;
+ const ready=`Prompt siap pakai:\n\nAnda adalah ${audience} untuk workspace/project ini. Jawab dalam ${lang}, gaya ${tone}.\n\nGOAL\n${g}\n\nCONTEXT\n${c}\n\nEXPECTED OUTPUT\n${o}\n\nPRIMARY MODE\n${mode}\n\nACTIVE PROTOCOLS\n${protocols}\n\nCONSTRAINTS / DO NOT\n${cons}\n\nEVIDENCE AND VERIFICATION REQUIRED\n${ev}\n\nWORKFLOW WAJIB\n1. Lakukan Protocol Precheck:\n   - Goal\n   - Expected output\n   - Primary mode\n   - Supporting protocols\n   - Files likely touched\n   - Evidence standard\n   - Verification plan\n   - bd issue/tracking bila tersedia\n   - Stop conditions\n   - Proceed/Stop\n2. Buat plan singkat sebelum eksekusi.\n3. Eksekusi hanya dalam scope.\n4. Jika membuat durable knowledge/dokumentasi, update wiki/index.md dan append wiki/log.md.\n5. Jalankan verifikasi.\n6. Tampilkan hasil akhir dengan format:\n   - Complete\n   - Files changed / artifacts\n   - Checks run\n   - Evidence\n   - bd/git status bila relevan\n   - Residual risks\n   - Next action\n\nSTOP CONDITIONS\nStop dan laporkan jika harus membaca credential/secret, evidence primer tidak tersedia untuk klaim faktual, test command wajib tidak diketahui untuk code work, atau git/bd state tidak safe.`;
+ document.getElementById('result').textContent='```text\n'+explanation+'\n\n'+ready+'\n```';
+}
+function copyOutput(){navigator.clipboard.writeText(document.getElementById('result').textContent)}
+function copyPromptOnly(){
+ const txt=document.getElementById('result').textContent;
+ const idx=txt.indexOf('Prompt siap pakai:');
+ navigator.clipboard.writeText(idx>=0?txt.slice(idx).replace(/```text|```/g,'').trim():txt);
+}
+function loadExample(){
+ document.getElementById('context').value='Saya punya folder project Karpathy dengan wiki, docs/process, bd issue tracking, dan beberapa legacy source folder yang tidak boleh broad-stage. Saya ingin agent membuat laporan audit data primer.';
+ document.getElementById('goal').value='Buat prompt untuk audit data primer yang verifiable dan mengikuti PMO governance.';
+ document.getElementById('output').value='Prompt audit siap pakai + format evidence packet + closure checklist.';
+ document.getElementById('constraints').value='Jangan baca secrets. Jangan broad-stage Bahan/. Gunakan path Windows yang benar. Klaim performa harus punya evidence.';
+ document.getElementById('evidence').value='File path, row count, schema, sample validation, issue ID, git diff, wiki/log update.';
+ generatePrompt();
+}
+function clearAll(){['context','goal','output','constraints','evidence'].forEach(id=>document.getElementById(id).value='');document.getElementById('result').textContent='Isi konteks di kiri lalu klik “Generate prompt”.'}
+function downloadTxt(){
+ const blob=new Blob([document.getElementById('result').textContent],{type:'text/plain;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='prompt-advisor-output.txt'; a.click(); URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

@@ -53,6 +53,7 @@ Process initialization has created a reusable operating layer for all major task
 - Created `PROJECT_DASHBOARD.md` — unified control tower for all 6 protocols (LLM Wiki, MAS+C4ET, Boris, Autoresearch, Skills, Project Management).
 - Updated `MASTER_INDEX.md` with dashboard entry and PMO reference.
 - Created PMO prompting guide HTML and Karpathy-style LLM Wiki HTML portal for human-readable planning-to-evaluation guidance.
+- Created interactive Prompt Advisor HTML page that turns user context into prompt explanation plus a ready-to-use prompt in one code block.
 
 ## In Progress
 
