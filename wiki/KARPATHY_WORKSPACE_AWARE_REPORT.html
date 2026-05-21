@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laporan Workspace-Aware Karpathy - Ensiklopedia Proyek</title>
+  <style>
+    :root{
+      --ink:#202122;--muted:#54595d;--link:#0645ad;--visited:#0b0080;--border:#a2a9b1;--line:#c8ccd1;
+      --bg:#ffffff;--subtle:#f8f9fa;--panel:#f6f6f6;--blue:#36c;--green:#14866d;--amber:#b97800;--red:#b32424;
+      --mono: ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      --sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      --serif: Georgia,"Times New Roman",Times,serif;
+    }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
+    a{color:var(--link);text-decoration:none} a:hover{text-decoration:underline}
+    .page{max-width:1240px;margin:0 auto;padding:0 20px 48px}
+    header{border-bottom:1px solid var(--border);padding:22px 0 10px;margin-bottom:14px}
+    .kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    h1{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.15;margin:6px 0 8px}
+    .subtitle{color:var(--muted);max-width:900px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}
+    .infobox{border:1px solid var(--border);background:var(--subtle);font-size:13px;position:sticky;top:16px}
+    .infobox h2{font:700 16px/1.2 var(--sans);text-align:center;background:#eaecf0;border-bottom:1px solid var(--border);margin:0;padding:10px}
+    .infobox table{width:100%;border-collapse:collapse}.infobox th,.infobox td{border-top:1px solid var(--line);padding:7px 9px;vertical-align:top}.infobox th{width:38%;text-align:left;background:#f0f0f0}
+    .toc{border:1px solid var(--border);background:var(--subtle);padding:12px 16px;margin:16px 0;display:inline-block;min-width:300px}.toc h2{font-size:16px;margin:0 0 8px}.toc ol{margin:0;padding-left:22px}
+    h2{font-family:var(--serif);font-weight:400;border-bottom:1px solid var(--border);font-size:27px;margin:30px 0 12px;padding-bottom:3px} h3{font-size:18px;margin:22px 0 8px}
+    p{margin:8px 0}.lead{font-size:17px}.note{border-left:4px solid var(--blue);background:#f8fbff;padding:10px 12px;margin:14px 0}.warn{border-left-color:var(--amber);background:#fffaf0}.danger{border-left-color:var(--red);background:#fff5f5}
+    code,.path{font-family:var(--mono);font-size:13px;background:#f1f3f5;border:1px solid #eaecf0;border-radius:3px;padding:1px 4px}.path{word-break:break-all}
+    table.wikitable{border-collapse:collapse;width:100%;margin:12px 0;background:#fff;font-size:14px}.wikitable th,.wikitable td{border:1px solid var(--border);padding:8px 10px;vertical-align:top}.wikitable th{background:#eaecf0;text-align:left}
+    .status{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700;background:#fff}.ok{color:var(--green);border-color:#9bd4c4;background:#eefaf6}.hold{color:var(--amber);border-color:#ebcb8b;background:#fff8e6}.no{color:var(--red);border-color:#e1a1a1;background:#fff1f1}.info{color:var(--blue);border-color:#a6bddb;background:#f5f8ff}
+    .figure{border:1px solid var(--border);background:#fff;margin:16px 0;padding:12px}.figure figcaption{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:8px}.svg-wrap{overflow:auto;background:#fff}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}.card{border:1px solid var(--line);background:var(--subtle);padding:12px}.card b{display:block;margin-bottom:4px}.metric{font-size:28px;font-weight:750;letter-spacing:-.03em}.small{font-size:13px;color:var(--muted)}
+    .bar{height:18px;background:#eaecf0;border:1px solid var(--line);position:relative}.bar span{display:block;height:100%;background:linear-gradient(90deg,#36c,#14866d)}
+    .priority{display:grid;grid-template-columns:90px 1fr;gap:8px}.rank{font-weight:800;color:#fff;background:var(--blue);text-align:center;padding:8px}.rank.p2{background:var(--green)}.rank.p3{background:var(--amber)}
+    footer{border-top:1px solid var(--border);margin-top:34px;padding-top:14px;color:var(--muted);font-size:13px}
+    @media(max-width:920px){.layout{grid-template-columns:1fr}.infobox{position:static}.cards{grid-template-columns:1fr}h1{font-size:31px}}
+    @media print{.page{max-width:none}.infobox{position:static}.toc a:after{content:""}body{font-size:12pt}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="kicker">Ensiklopedia Proyek · Laporan Workspace-Aware</div>
+      <h1>Karpathy Workspace: Audit Isi, Protokol, dan Peluang Pengembangan</h1>
+      <p class="subtitle">Laporan HTML bergaya Wikipedia berdasarkan audit folder Karpathy, dokumen proses, status Git/bd, dan kandidat pengembangan protokol/skills. Dibuat sebagai artifact statis yang dapat dibuka langsung di browser.</p>
+    </header>
+
+    <div class="layout">
+      <main>
+        <p class="lead"><b>Karpathy</b> adalah workspace protokol dan knowledge orchestration untuk <i>trading research</i>, bukan satu repository aplikasi tunggal. Fungsi utamanya adalah control tower untuk routing task, audit evidence, wiki memory, AutoResearch, C4-ET, Boris Workflow, dan project closure berbasis Git/bd.</p>
+
+        <div class="note">
+          <b>Kesimpulan eksekutif:</b> sistem protokol sudah matang dan dapat dipakai. Bottleneck utama adalah pemilihan <i>authoritative implementation subproject</i>, canonical test command, rekonsiliasi legacy wiki, dan staging source corpus yang masih harus dikendalikan secara curated.
+        </div>
+
+        <nav class="toc" aria-label="Daftar isi">
+          <h2>Daftar isi</h2>
+          <ol>
+            <li><a href="#snapshot">Snapshot workspace</a></li>
+            <li><a href="#arsitektur">Arsitektur protokol</a></li>
+            <li><a href="#komponen">Komponen utama</a></li>
+            <li><a href="#status">Status operasional</a></li>
+            <li><a href="#temuan">Temuan audit</a></li>
+            <li><a href="#grafik">Grafik kesiapan</a></li>
+            <li><a href="#roadmap">Roadmap pengembangan</a></li>
+            <li><a href="#guardrails">Guardrails</a></li>
+          </ol>
+        </nav>
+
+        <section id="snapshot">
+          <h2>Snapshot workspace</h2>
+          <div class="cards">
+            <div class="card"><b>Progress baseline</b><div class="metric">82.25%</div><div class="small">PASS terhadap target sprint 75%</div></div>
+            <div class="card"><b>Repo closure</b><div class="metric">Aktif</div><div class="small"><code>main</code> melacak <code>origin/main</code></div></div>
+            <div class="card"><b>bd issue state</b><div class="metric">5/5</div><div class="small">Semua issue lama closed saat audit</div></div>
+          </div>
+          <table class="wikitable">
+            <tr><th>Aspek</th><th>Status</th><th>Evidence anchor</th></tr>
+            <tr><td>Project root</td><td><span class="status ok">Terverifikasi</span></td><td><span class="path">C:\Users\Gysje P\Documents\Adi File\Karpathy</span></td></tr>
+            <tr><td>Remote</td><td><span class="status ok">Configured</span></td><td><span class="path">https://github.com/DanielAdrian975/Karpathy-Protokol.git</span></td></tr>
+            <tr><td>Normalized wiki</td><td><span class="status ok">Aktif</span></td><td><code>wiki/index.md</code>, <code>wiki/log.md</code>, <code>wiki/schema.md</code></td></tr>
+            <tr><td>Legacy wiki</td><td><span class="status hold">HOLD</span></td><td><code>LLM Wiki Karpathy/</code> belum dimigrasikan penuh</td></tr>
+            <tr><td>Source corpus</td><td><span class="status no">Broad staging NO-GO</span></td><td><code>Bahan/</code>, <code>Claude Up Skills/</code>, <code>LLM Wiki Karpathy/</code> masih untracked/curated only</td></tr>
+          </table>
+        </section>
+
+        <section id="arsitektur">
+          <h2>Arsitektur protokol</h2>
+          <figure class="figure">
+            <div class="svg-wrap">
+              <svg width="900" height="430" viewBox="0 0 900 430" role="img" aria-label="Diagram arsitektur protokol Karpathy">
+                <defs>
+                  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#54595d"/></marker>
+                  <style>.box{fill:#f8f9fa;stroke:#a2a9b1;stroke-width:1.3}.blue{fill:#eef4ff;stroke:#36c}.green{fill:#eefaf6;stroke:#14866d}.amber{fill:#fff8e6;stroke:#b97800}.red{fill:#fff1f1;stroke:#b32424}.t{font:14px sans-serif;fill:#202122}.h{font:bold 15px sans-serif}.s{font:12px sans-serif;fill:#54595d}.line{stroke:#54595d;stroke-width:1.4;fill:none;marker-end:url(#arrow)}</style>
+                </defs>
+                <rect x="30" y="25" width="180" height="70" rx="4" class="blue"/><text x="120" y="53" text-anchor="middle" class="h">User Request</text><text x="120" y="74" text-anchor="middle" class="s">chat / task / report</text>
+                <rect x="270" y="25" width="210" height="70" rx="4" class="box"/><text x="375" y="52" text-anchor="middle" class="h">PMO Intake</text><text x="375" y="74" text-anchor="middle" class="s">bd · scope · risk</text>
+                <rect x="545" y="25" width="250" height="70" rx="4" class="box"/><text x="670" y="52" text-anchor="middle" class="h">Protocol Router</text><text x="670" y="74" text-anchor="middle" class="s">TASK_ROUTING + QUALITY_GATES</text>
+                <path class="line" d="M210 60 H270"/><path class="line" d="M480 60 H545"/>
+
+                <rect x="42" y="145" width="160" height="64" rx="4" class="green"/><text x="122" y="172" text-anchor="middle" class="h">LLM Wiki</text><text x="122" y="193" text-anchor="middle" class="s">index · log · sources</text>
+                <rect x="222" y="145" width="160" height="64" rx="4" class="blue"/><text x="302" y="172" text-anchor="middle" class="h">MAS Evidence</text><text x="302" y="193" text-anchor="middle" class="s">claims · evidence · judge</text>
+                <rect x="402" y="145" width="160" height="64" rx="4" class="amber"/><text x="482" y="172" text-anchor="middle" class="h">C4-ET Gate</text><text x="482" y="193" text-anchor="middle" class="s">capacity · WIP · GO/NO-GO</text>
+                <rect x="582" y="145" width="160" height="64" rx="4" class="green"/><text x="662" y="172" text-anchor="middle" class="h">Boris Workflow</text><text x="662" y="193" text-anchor="middle" class="s">plan · execute · verify</text>
+                <rect x="312" y="245" width="160" height="64" rx="4" class="blue"/><text x="392" y="272" text-anchor="middle" class="h">AutoResearch</text><text x="392" y="293" text-anchor="middle" class="s">retrieval · synthesis</text>
+                <rect x="492" y="245" width="160" height="64" rx="4" class="box"/><text x="572" y="272" text-anchor="middle" class="h">Skills</text><text x="572" y="293" text-anchor="middle" class="s">reusable workflows</text>
+
+                <path class="line" d="M670 95 C670 120 122 120 122 145"/><path class="line" d="M670 95 C670 120 302 120 302 145"/><path class="line" d="M670 95 C670 120 482 120 482 145"/><path class="line" d="M670 95 V145"/><path class="line" d="M670 95 C670 220 392 220 392 245"/><path class="line" d="M670 95 C760 180 572 220 572 245"/>
+
+                <rect x="248" y="350" width="410" height="58" rx="4" class="red"/><text x="453" y="374" text-anchor="middle" class="h">Closure Gate</text><text x="453" y="396" text-anchor="middle" class="s">wiki/log · progress · bd close · git status · commit/push scoped changes</text>
+                <path class="line" d="M122 209 C122 330 300 330 330 350"/><path class="line" d="M302 209 C302 300 370 322 405 350"/><path class="line" d="M482 209 V350"/><path class="line" d="M662 209 C662 320 590 330 545 350"/><path class="line" d="M392 309 V350"/><path class="line" d="M572 309 V350"/>
+              </svg>
+            </div>
+            <figcaption>Gambar 1. Routing protokol: setiap pekerjaan melewati intake, protocol router, eksekusi sesuai mode, lalu closure gate.</figcaption>
+          </figure>
+        </section>
+
+        <section id="komponen">
+          <h2>Komponen utama</h2>
+          <table class="wikitable">
+            <tr><th>Komponen</th><th>Peran</th><th>Status pengembangan</th></tr>
+            <tr><td><code>AGENTS.md</code></td><td>Konstitusi operasi: correctness, auditability, modes, stop conditions.</td><td><span class="status ok">Aktif</span></td></tr>
+            <tr><td><code>PROJECT_DASHBOARD.md</code></td><td>Control tower: status, protokol, KPI, risk, queue.</td><td><span class="status ok">Aktif</span></td></tr>
+            <tr><td><code>docs/process/</code></td><td>Operating system: routing, gates, evidence templates, risk/decision/progress.</td><td><span class="status ok">Aktif</span></td></tr>
+            <tr><td><code>wiki/</code></td><td>Normalized project memory dengan index/log/schema.</td><td><span class="status ok">Aktif</span></td></tr>
+            <tr><td><code>LLM Wiki Karpathy/</code></td><td>Legacy compiled memory dan source registry lama.</td><td><span class="status hold">Migrasi bertahap</span></td></tr>
+            <tr><td><code>hermes-things/</code></td><td>Candidate active Python trading implementation.</td><td><span class="status info">Kandidat authority</span></td></tr>
+            <tr><td><code>Bahan/</code></td><td>Source/reference corpus, KMS, extractors, RAG variants.</td><td><span class="status no">Curated audit only</span></td></tr>
+          </table>
+        </section>
+
+        <section id="status">
+          <h2>Status operasional</h2>
+          <h3>Git dan issue tracker</h3>
+          <ul>
+            <li>Branch aktif: <code>main...origin/main</code>.</li>
+            <li>Remote: <code>origin</code> menuju <span class="path">Karpathy-Protokol.git</span>.</li>
+            <li>bd: 5 total issues, 0 open, 0 in_progress, 5 closed saat audit.</li>
+            <li>Untracked besar: <code>Bahan/</code>, <code>Claude Up Skills/</code>, <code>LLM Wiki Karpathy/</code>.</li>
+          </ul>
+          <div class="warn note"><b>Catatan:</b> repo siap untuk scoped commit, tetapi broad staging tetap dilarang. Semua source corpus besar harus melewati sensitivity/provenance audit.</div>
+
+          <h3>Kandidat implementasi</h3>
+          <p><code>hermes-things/</code> paling operasional karena memiliki <code>pyproject.toml</code>, <code>requirements.txt</code>, modul Python, dan test files. Kandidat test command: <code>python -m pytest tests/ -v</code> setelah dependency audit ringan.</p>
+        </section>
+
+        <section id="temuan">
+          <h2>Temuan audit</h2>
+          <ol>
+            <li><b>Protokol matang.</b> Enam protokol utama sudah terdokumentasi dan pernah divalidasi secara lokal.</li>
+            <li><b>Authority implementation belum diputuskan.</b> Ini blocker utama untuk implementation work.</li>
+            <li><b>Legacy wiki belum reconciled.</b> Root wiki sudah aktif, tetapi sumber lama belum termigrasi dengan SourceID.</li>
+            <li><b>Source corpus berisiko.</b> Ada credential-like path, archive, DB lokal, nested git, dan generated folders.</li>
+            <li><b>Stale process note terdeteksi.</b> <code>QUALITY_GATES.md</code> masih perlu sinkronisasi kecil terkait Gate 6 bila belum dipatch.</li>
+          </ol>
+        </section>
+
+        <section id="grafik">
+          <h2>Grafik kesiapan protokol</h2>
+          <table class="wikitable" aria-label="Kesiapan protokol">
+            <tr><th>Area</th><th>Score</th><th>Visual</th><th>Status</th></tr>
+            <tr><td>Constitution & routing</td><td>100%</td><td><div class="bar"><span style="width:100%"></span></div></td><td><span class="status ok">DONE</span></td></tr>
+            <tr><td>Wiki memory discipline</td><td>75%</td><td><div class="bar"><span style="width:75%"></span></div></td><td><span class="status hold">Legacy migration open</span></td></tr>
+            <tr><td>MAS evidence workflow</td><td>75%</td><td><div class="bar"><span style="width:75%"></span></div></td><td><span class="status ok">Trial validated</span></td></tr>
+            <tr><td>AutoResearch workflow</td><td>75%</td><td><div class="bar"><span style="width:75%"></span></div></td><td><span class="status ok">Trial validated</span></td></tr>
+            <tr><td>C4-ET gate discipline</td><td>75%</td><td><div class="bar"><span style="width:75%"></span></div></td><td><span class="status no">NO-GO broad staging</span></td></tr>
+            <tr><td>Skills workflow map</td><td>85%</td><td><div class="bar"><span style="width:85%"></span></div></td><td><span class="status hold">Validation pending</span></td></tr>
+            <tr><td>Git/bd operational closure</td><td>100%</td><td><div class="bar"><span style="width:100%"></span></div></td><td><span class="status ok">Operational</span></td></tr>
+          </table>
+
+          <figure class="figure">
+            <div class="svg-wrap">
+              <svg width="900" height="280" viewBox="0 0 900 280" role="img" aria-label="Roadmap prioritas pengembangan">
+                <style>.axis{stroke:#a2a9b1}.bubble{stroke:#202122;stroke-width:1;opacity:.92}.lab{font:13px sans-serif;fill:#202122}.grid{stroke:#eaecf0}.q{font:bold 14px sans-serif;fill:#54595d}</style>
+                <line x1="90" y1="230" x2="830" y2="230" class="axis"/><line x1="90" y1="230" x2="90" y2="35" class="axis"/>
+                <text x="820" y="255" class="q">Dampak tinggi →</text><text x="12" y="46" class="q" transform="rotate(-90 12,46)">Urgensi tinggi →</text>
+                <line x1="460" y1="35" x2="460" y2="230" class="grid"/><line x1="90" y1="132" x2="830" y2="132" class="grid"/>
+                <circle cx="690" cy="70" r="30" fill="#36c" class="bubble"/><text x="690" y="75" text-anchor="middle" fill="#fff" font-weight="700">P1</text><text x="610" y="42" class="lab">hermes-things GO-TRIAL</text>
+                <circle cx="555" cy="102" r="24" fill="#14866d" class="bubble"/><text x="555" y="107" text-anchor="middle" fill="#fff" font-weight="700">P2</text><text x="585" y="106" class="lab">patch Gate 6 note</text>
+                <circle cx="620" cy="162" r="24" fill="#b97800" class="bubble"/><text x="620" y="167" text-anchor="middle" fill="#fff" font-weight="700">P3</text><text x="650" y="166" class="lab">legacy wiki batch 1</text>
+                <circle cx="372" cy="82" r="27" fill="#b32424" class="bubble"/><text x="372" y="87" text-anchor="middle" fill="#fff" font-weight="700">P4</text><text x="230" y="82" class="lab">source corpus audit</text>
+                <circle cx="370" cy="170" r="23" fill="#54595d" class="bubble"/><text x="370" y="175" text-anchor="middle" fill="#fff" font-weight="700">P5</text><text x="210" y="174" class="lab">skills validation</text>
+              </svg>
+            </div>
+            <figcaption>Gambar 2. Matriks prioritas: sumbu horizontal menunjukkan dampak, sumbu vertikal urgensi. P1 adalah pengembangan paling bernilai untuk membuka implementation work.</figcaption>
+          </figure>
+        </section>
+
+        <section id="roadmap">
+          <h2>Roadmap pengembangan yang disarankan</h2>
+          <div class="priority"><div class="rank">P1</div><div><b>Authority implementation GO-TRIAL</b><br/>Tetapkan <code>hermes-things/</code> sebagai kandidat authority, validasi test command, dan buat artifact hasil trial.</div></div><br/>
+          <div class="priority"><div class="rank p2">P2</div><div><b>Patch stale Quality Gate note</b><br/>Sinkronkan <code>QUALITY_GATES.md</code> dengan status remote/bd yang sudah aktif.</div></div><br/>
+          <div class="priority"><div class="rank p3">P3</div><div><b>Legacy wiki reconciliation batch 1</b><br/>Migrasi registry/unresolved secara curated ke <code>wiki/sources/</code> dengan SourceID.</div></div><br/>
+          <div class="priority"><div class="rank p3">P4</div><div><b>Source corpus sensitivity/provenance audit</b><br/>Audit folder besar sebelum staging: <code>Bahan/</code>, <code>Claude Up Skills/</code>, <code>LLM Wiki Karpathy/</code>.</div></div><br/>
+          <div class="priority"><div class="rank p3">P5</div><div><b>Skills validation</b><br/>Cocokkan skills yang disebut dashboard dengan skills yang benar-benar tersedia/terpasang.</div></div>
+        </section>
+
+        <section id="guardrails">
+          <h2>Guardrails</h2>
+          <div class="danger note">
+            <b>Larangan operasional:</b> jangan <code>git add .</code>; jangan stage source corpus besar; jangan baca atau commit <code>Bahan/.streamlit/*</code>; jangan flatten nested Git repo; jangan mengubah raw/legacy sources tanpa scope eksplisit.
+          </div>
+          <table class="wikitable">
+            <tr><th>Situasi</th><th>Respons protokol</th></tr>
+            <tr><td>Klaim faktual/performa/trading</td><td>MAS Evidence-First, atomic claims, primary source, unresolved bila bukti kurang.</td></tr>
+            <tr><td>Coding/implementation</td><td>Boris Workflow: plan → execute → verify → diff.</td></tr>
+            <tr><td>Wiki/durable knowledge</td><td>LLM Wiki: SourceID, index update, log append, raw immutable.</td></tr>
+            <tr><td>WIP/staging/capacity decision</td><td>C4-ET Gate: GO/NO-GO/GO-TRIAL.</td></tr>
+            <tr><td>Session closure</td><td>bd status, scoped git status/diff, commit/push hanya setelah aman.</td></tr>
+          </table>
+        </section>
+      </main>
+
+      <aside class="infobox" aria-label="Infobox laporan">
+        <h2>Karpathy Workspace</h2>
+        <table>
+          <tr><th>Jenis</th><td>Protocol/knowledge workspace</td></tr>
+          <tr><th>Domain</th><td>Trading research, knowledge management, orchestration</td></tr>
+          <tr><th>Path</th><td><span class="path">C:\Users\Gysje P\Documents\Adi File\Karpathy</span></td></tr>
+          <tr><th>Remote</th><td><span class="path">Karpathy-Protokol.git</span></td></tr>
+          <tr><th>Branch</th><td><code>main</code> → <code>origin/main</code></td></tr>
+          <tr><th>Progress</th><td>82.25%</td></tr>
+          <tr><th>Primary candidate</th><td><code>hermes-things/</code></td></tr>
+          <tr><th>Primary risk</th><td>Broad source corpus staging</td></tr>
+          <tr><th>Dibuat</th><td>2026-05-21</td></tr>
+        </table>
+      </aside>
+    </div>
+
+    <footer>
+      <p><b>Evidence basis:</b> <code>AGENTS.md</code>, <code>PROJECT_DASHBOARD.md</code>, <code>MASTER_INDEX.md</code>, <code>docs/process/PROGRESS.md</code>, <code>docs/process/SOURCE_SUBPROJECT_INVENTORY.md</code>, <code>docs/process/TEST_COMMAND_DISCOVERY.md</code>, <code>docs/process/RISK_REGISTER.md</code>, <code>hermes-things/README.md</code>, <code>hermes-things/pyproject.toml</code>, serta status Git/bd lokal.</p>
+      <p><b>Batasan:</b> laporan ini adalah snapshot workspace per 2026-05-21. Tidak membaca credential path dan tidak melakukan source corpus staging.</p>
+    </footer>
+  </div>
+</body>
+</html>

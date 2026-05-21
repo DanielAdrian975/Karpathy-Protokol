@@ -140,3 +140,7 @@ The guide converts PMO Microtask Governance into prompting workflows from intake
 ## 2026-05-20 | documentation | interactive-prompt-advisor | Context-to-prompt advisor page
 
 Created `docs/process/INTERACTIVE_PROMPT_ADVISOR.html`, a static interactive page where the user enters context, goal, output, constraints, and evidence requirements. The page generates a prompt explanation and a ready-to-use prompt in one code block, with copy/download helpers and PMO protocol routing. Updated `PROJECT_PMO_PROMPTING_WIKI.html`, `wiki/index.md`, and `docs/process/PROGRESS.md`. Raw source files were not mutated.
+
+## 2026-05-21 | documentation | workspace-aware-html-report | Karpathy workspace-aware report
+
+Created `wiki/KARPATHY_WORKSPACE_AWARE_REPORT.html`, a Wikipedia-style HTML report summarizing the Karpathy workspace contents, protocol architecture, operational status, readiness chart, priority roadmap, and guardrails. Source basis: local workspace audit from `AGENTS.md`, `PROJECT_DASHBOARD.md`, `MASTER_INDEX.md`, `docs/process/PROGRESS.md`, `docs/process/SOURCE_SUBPROJECT_INVENTORY.md`, `docs/process/TEST_COMMAND_DISCOVERY.md`, `docs/process/RISK_REGISTER.md`, `hermes-things/README.md`, `hermes-things/pyproject.toml`, and Git/bd status. Updated `wiki/index.md`. Raw source files and credential-like paths were not mutated or read.

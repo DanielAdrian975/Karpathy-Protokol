@@ -39,6 +39,7 @@ This root wiki is the normalized project memory for future Codex work. It comple
 | `docs/process/INTERACTIVE_PROMPT_ADVISOR.html` | Interactive single-page prompt advisor: user enters context and receives explanation plus ready-to-use prompt in one code block. |
 | `docs/process/PMO_PROMPTING_GUIDE.html` | Human-readable PMO prompting guide from intake/planning through execution, closure, and evaluation. |
 | `wiki/KARPATHY_LLM_WIKI_HUMAN.html` | Human-readable Karpathy-style LLM Wiki portal with entity/topic/query surfaces and wiki roadmap. |
+| `wiki/KARPATHY_WORKSPACE_AWARE_REPORT.html` | Wikipedia-style workspace-aware report with protocol architecture diagram, readiness chart, priority roadmap, evidence anchors, guardrails, and next development options. |
 | `PROJECT_PMO_PROMPTING_WIKI.html` | Root HTML portal linking PMO prompting guide and LLM Wiki Karpathy HTML. |
 | `CLAUDE.md` | Root legacy orientation rules for trading research workspace behavior. |
 | `MASTER_INDEX.md` | Root legacy orientation index for trading research workspace context and routing. |
