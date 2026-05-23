@@ -165,3 +165,12 @@ Created `wiki/KARPATHY_WORKSPACE_AWARE_REPORT.html`, a Wikipedia-style HTML repo
 - Updated `wiki/index.md`.
 - Evidence basis: prior ingested Hugging Face model card source `S-20260523-resembleai-dramabox-model-card` and local project-management decision.
 - Remaining unresolved items: license constraints, voice-consent policy, Indonesian output quality, hardware/route feasibility, first verified WAV output.
+
+## 2026-05-23 | decision | S-20260523-ltx2-community-license | Dramabox governance checklist
+
+- Ingested the LTX-2 Community License from the Dramabox model repository into `wiki/raw/inbox/S-20260523-ltx2-community-license.md` and normalized it as `wiki/sources/S-20260523-ltx2-community-license.md`.
+- Created `docs/process/DRAMABOX_GOVERNANCE_CHECKLIST.md` for license threshold, consent, watermark, machine-generated disclosure, and healthcare/casemix guardrails.
+- Updated `wiki/entities/dramabox.md` with a concise governance baseline.
+- Updated `docs/process/DRAMABOX_PM_CONTEXT.md` so future sessions can continue from `Karpathy-cwq` without rereading stable files.
+- Kaizen result: highest-risk gate closed first; next microtask is no-install capability matrix.
+- Remaining unresolved items: commercial/public deployment still requires separate legal/revenue-threshold review; Indonesian quality and local runtime remain unverified.

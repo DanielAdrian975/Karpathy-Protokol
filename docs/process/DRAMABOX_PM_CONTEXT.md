@@ -6,7 +6,8 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 
 ## Active PM issue
 
-- `Karpathy-b9b` — Dramabox governance: license, consent, watermark checks — in_progress.
+- `Karpathy-b9b` — Dramabox governance: license, consent, watermark checks — ready to close after commit.
+- Next active candidate: `Karpathy-cwq` — Phase 1 no-install capability map.
 
 ## Backlog
 
@@ -44,10 +45,9 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 
 ## Next Kaizen microtask
 
-Execute `Karpathy-b9b`:
+Execute `Karpathy-cwq`:
 
-1. Fetch/read Dramabox `LICENSE` only.
-2. Create `docs/process/DRAMABOX_GOVERNANCE_CHECKLIST.md`.
-3. Update `wiki/entities/dramabox.md` only if governance facts change.
-4. Append concise wiki log entry.
-5. Close or update `Karpathy-b9b` based on license clarity.
+1. Create no-install capability matrix from existing model card.
+2. Reuse governance checklist; do not reread stable process docs.
+3. Compare route options: Space, hosted GPU, local full model, quantized/community variants.
+4. Keep all performance claims marked source-based until locally verified.

@@ -62,7 +62,8 @@ Process initialization has created a reusable operating layer for all major task
 - Created bd issues for Dramabox PM setup, governance, capability map, prompt library, inference route, and integration.
 - Added Dramabox-specific risks for license, consent, hardware feasibility, and Indonesian quality.
 - Selecting the authoritative implementation subproject remains the next implementation prerequisite.
-- Dramabox adoption is now managed through bd issues; next recommended task is `Karpathy-b9b` governance checklist.
+- Dramabox adoption is now managed through bd issues.
+- Completed Dramabox governance checklist from LTX-2 Community License; next recommended task is `Karpathy-cwq` no-install capability matrix.
 
 ## Blocked
 

@@ -53,9 +53,20 @@ Use this pattern:
 - Hardware: local full model likely needs high VRAM; this host should start with hosted Space/API or smaller/quantized variants before local install.
 - Voice cloning: only use voices with consent; keep reference clips auditable.
 
+
+## Governance baseline
+
+- License source: `wiki/sources/S-20260523-ltx2-community-license.md`.
+- Internal governed experiments: GO-TRIAL if consent, disclosure, watermark logging, and restricted-use checks pass.
+- Public/commercial use: gated until license/revenue-threshold review is complete.
+- Voice cloning: explicit consent required; non-consented impersonation/deepfake use is NO-GO.
+- Disclosure: disseminated machine-generated content must be expressly and intelligibly disclosed as machine generated.
+- Healthcare/casemix guardrail: administrative narration is allowed for experiments; medical advice or medical-results interpretation is NO-GO.
+
 ## Evidence / Source Anchors
 
 - `S-20260523-resembleai-dramabox-model-card` @ model card frontmatter, Quick Start, Inference Parameters, Prompt Format, Files, Watermarking.
+- `S-20260523-ltx2-community-license` @ license grant, output accountability, disclosure, consent/impersonation, and medical-use restriction anchors.
 
 ## Links
 

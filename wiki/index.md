@@ -63,3 +63,7 @@ The existing legacy wiki describes a Forex Trading Strategy Development System w
 - Run sensitivity/provenance review before staging legacy wiki or large source corpus folders.
 - Select the authoritative implementation subproject and canonical test command.
 - Configure a safe remote/upstream before push or `bd sync`.
+
+| `wiki/sources/S-20260523-ltx2-community-license.md` | Source page for LTX-2 Community License anchors governing Dramabox use, distribution, output accountability, disclosure, consent, and prohibited uses. |
+| `docs/process/DRAMABOX_GOVERNANCE_CHECKLIST.md` | Governance checklist for Dramabox experiments: license threshold, consent, watermark, disclosure, healthcare/casemix guardrails, and GO/NO-GO rules. |
+| `docs/process/DRAMABOX_PM_CONTEXT.md` | Token-efficient session anchor for Dramabox PM to avoid rereading stable process/wiki files. |
