@@ -144,3 +144,24 @@ Created `docs/process/INTERACTIVE_PROMPT_ADVISOR.html`, a static interactive pag
 ## 2026-05-21 | documentation | workspace-aware-html-report | Karpathy workspace-aware report
 
 Created `wiki/KARPATHY_WORKSPACE_AWARE_REPORT.html`, a Wikipedia-style HTML report summarizing the Karpathy workspace contents, protocol architecture, operational status, readiness chart, priority roadmap, and guardrails. Source basis: local workspace audit from `AGENTS.md`, `PROJECT_DASHBOARD.md`, `MASTER_INDEX.md`, `docs/process/PROGRESS.md`, `docs/process/SOURCE_SUBPROJECT_INVENTORY.md`, `docs/process/TEST_COMMAND_DISCOVERY.md`, `docs/process/RISK_REGISTER.md`, `hermes-things/README.md`, `hermes-things/pyproject.toml`, and Git/bd status. Updated `wiki/index.md`. Raw source files and credential-like paths were not mutated or read.
+
+## 2026-05-23 | ingest | S-20260523-resembleai-dramabox-model-card | ResembleAI Dramabox model card
+
+- Ingested Hugging Face model card for `ResembleAI/Dramabox` into `wiki/raw/inbox/S-20260523-resembleai-dramabox-model-card.md` with SHA256 provenance.
+- Created source page `wiki/sources/S-20260523-resembleai-dramabox-model-card.md` with atomic claims for expressive TTS, voice cloning, model base, parameters, files, VRAM, and watermarking.
+- Created entity page `wiki/entities/dramabox.md` and synthesis page `wiki/syntheses/dramabox-adoption-plan.md` to guide use in this workspace.
+- Updated `wiki/index.md`.
+- Remaining unresolved items: LTX-2 Community License constraints for intended use; Indonesian output quality; local GPU feasibility.
+
+## 2026-05-23 | decision | S-20260523-resembleai-dramabox-project-management | Dramabox project management and Kaizen roadmap
+
+- Created project-management artifacts for executing the Dramabox technical recommendations:
+  - `docs/process/DRAMABOX_PROJECT_MANAGEMENT.md`
+  - `docs/process/DRAMABOX_EXPERIMENT_LOG.md`
+  - `docs/plans/2026-05-23-dramabox-adoption.md`
+  - `wiki/syntheses/dramabox-execution-roadmap.md`
+  - `wiki/DRAMABOX_OPERATOR_WORKFLOW.html`
+- Created bd tracking issues: `Karpathy-c11`, `Karpathy-b9b`, `Karpathy-cwq`, `Karpathy-vv0`, `Karpathy-isg`, and `Karpathy-e5c`.
+- Updated `wiki/index.md`.
+- Evidence basis: prior ingested Hugging Face model card source `S-20260523-resembleai-dramabox-model-card` and local project-management decision.
+- Remaining unresolved items: license constraints, voice-consent policy, Indonesian output quality, hardware/route feasibility, first verified WAV output.

@@ -1,6 +1,6 @@
 # Wiki Index
 
-Last updated: 2026-05-16
+Last updated: 2026-05-23
 Status: root wiki scaffold initialized
 
 ## Purpose
@@ -43,6 +43,14 @@ This root wiki is the normalized project memory for future Codex work. It comple
 | `PROJECT_PMO_PROMPTING_WIKI.html` | Root HTML portal linking PMO prompting guide and LLM Wiki Karpathy HTML. |
 | `CLAUDE.md` | Root legacy orientation rules for trading research workspace behavior. |
 | `MASTER_INDEX.md` | Root legacy orientation index for trading research workspace context and routing. |
+| `wiki/sources/S-20260523-resembleai-dramabox-model-card.md` | Source page for ResembleAI Dramabox model card: expressive TTS, voice cloning, parameters, files, VRAM, watermarking, open questions. |
+| `wiki/entities/dramabox.md` | Entity page for Dramabox TTS/voice-cloning model, capabilities, prompt rule, constraints, and operational facts. |
+| `wiki/syntheses/dramabox-adoption-plan.md` | Adoption plan for using Dramabox in this workspace with experiment logging, prompt templates, stop conditions, and integration targets. |
+| `docs/process/DRAMABOX_PROJECT_MANAGEMENT.md` | Project-management layer for executing Dramabox recommendations with bd tracking, Kaizen cadence, gates, and stop conditions. |
+| `docs/process/DRAMABOX_EXPERIMENT_LOG.md` | Reproducible log template for every Dramabox generation run; no audio runs verified yet. |
+| `docs/plans/2026-05-23-dramabox-adoption.md` | Bite-sized implementation plan for governance, capability map, prompt library, route decision, first WAV, and integration. |
+| `wiki/syntheses/dramabox-execution-roadmap.md` | Managed execution roadmap for Dramabox adoption linked to bd issues and stop conditions. |
+| `wiki/DRAMABOX_OPERATOR_WORKFLOW.html` | Human-readable operator workflow portal for Dramabox readiness, execution order, bd issues, and stop conditions. |
 
 ## Legacy Memory To Reconcile
 

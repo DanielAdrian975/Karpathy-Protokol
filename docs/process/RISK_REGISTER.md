@@ -21,3 +21,7 @@
 | R-0017 | Implementation work could run the wrong tests because no authoritative subproject or root test command exists. | Medium | High | Open | Use docs/process structural checks for process work; stop before implementation until subproject and test command are selected. |
 | R-0018 | Broad source corpus staging has excessive WIP and multiple risk classes. | High | High | Open | Follow C4-ET NO-GO; continue only narrow curated audits and explicit staging. |
 | R-0019 | GitHub CLI auth has multiple accounts and can time out when listing repositories. | Low | Medium | Open | Prefer explicit user-provided remote URLs and `git ls-remote` verification over repo-name guessing. |
+| R-0020 | Dramabox license terms may restrict intended public/commercial use. | High | Medium | Open | Run `Karpathy-b9b`; review LTX-2 Community License before any public/commercial deployment. |
+| R-0021 | Voice cloning can misuse non-consented speaker identity. | High | Medium | Open | Require explicit consent for every voice reference; log consent status in experiment log; stop if unclear. |
+| R-0022 | Dramabox full local inference may exceed available GPU/VRAM/storage. | Medium | High | Open | Run hardware/route decision before downloads; prefer Space/hosted/quantized path if VRAM is insufficient. |
+| R-0023 | Indonesian quality may be overclaimed because model metadata lists English. | Medium | High | Open | Treat Indonesian support as unresolved until verified by generated output and listening notes. |

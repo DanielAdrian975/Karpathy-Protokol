@@ -145,3 +145,11 @@ Decision: Configure `origin` as `https://github.com/DanielAdrian975/Karpathy-Pro
 Rationale: The user provided the explicit project remote URL. The remote was reachable and had no existing heads before first push. `bd sync` expected `origin/main`, so using `main` avoids sync mismatch while preserving the local commit history. After the remote change, `bd` correctly detected a repository ID mismatch; `bd --no-daemon migrate --update-repo-id --yes` updated the project-local ID from `dd2a206c` to `97d26813`.
 
 Status: Accepted
+
+## 2026-05-23 | D-0019 | Manage Dramabox adoption through bd + Karpathy wiki
+
+Decision: Execute Dramabox recommendations as a managed project with bd issues, explicit governance gates, experiment logging, and LLM Wiki Karpathy updates after each durable learning.
+
+Rationale: Dramabox has high-value text-to-audio/voice-cloning potential, but the model card indicates hardware, license, language, watermark, and consent constraints. A project-management layer prevents unsafe local installs, unverifiable audio claims, and untracked prompt experiments.
+
+Status: Accepted

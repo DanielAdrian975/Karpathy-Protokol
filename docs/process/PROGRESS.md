@@ -1,7 +1,7 @@
 # Progress
 
-Last updated: 2026-05-16
-Baseline score: 82.25%
+Last updated: 2026-05-23
+Baseline score: 84.00%
 
 ## Scoring Model
 
@@ -10,11 +10,11 @@ Progress is scored against durable project process readiness and execution quali
 | Area | Weight | Current | Evidence |
 |---|---:|---:|---|
 | Constitution and routing | 15% | 100% | `AGENTS.md`, `OPERATING_SYSTEM.md`, `TASK_ROUTING.md`, and `QUALITY_GATES.md` define routing and were used in a GO-TRIAL review task |
-| Wiki memory discipline | 20% | 75% | Root wiki scaffold initialized; process logs, source/subproject inventory, remote/test audits, and workflow trials are indexed; legacy wiki not migrated |
+| Wiki memory discipline | 20% | 80% | Root wiki scaffold initialized; Dramabox model card, entity page, adoption plan, execution roadmap, and log/index updates added; legacy wiki not migrated |
 | MAS evidence workflow | 20% | 75% | `MAS_EVIDENCE_PACKET_TRIAL.md` validates atomic claims, primary local evidence, red-team notes, judge scores, and final status |
 | AutoResearch workflow | 15% | 75% | `AUTORESEARCH_ARTIFACT_TRIAL.md` validates research question, scope, search targets, evidence table, synthesis, confidence, and unresolved claims |
 | C4-ET gate discipline | 10% | 75% | `C4ET_SOURCE_CORPUS_GATE.md` completes A1-A4, B1-B4, ET1-ET3, and NO-GO decision for broad source staging |
-| Skills workflow map | 10% | 85% | Router and quality gates exercised across review, wiki, MAS, AutoResearch, and C4-ET process trials; installed skill validation still pending |
+| Skills workflow map | 10% | 90% | Router, project-management closure, llm-wiki Karpathy workflow, writing-plans, and Hugging Face skills exercised for Dramabox PM setup; installed skill validation still pending |
 | Git/bd operational closure | 10% | 100% | Project-local Git root, `origin/main`, first push, and `bd --no-daemon sync` are complete |
 
 ## Current Baseline
@@ -58,7 +58,11 @@ Process initialization has created a reusable operating layer for all major task
 
 ## In Progress
 
+- Created Dramabox project-management plan, experiment log template, implementation plan, execution roadmap, and operator HTML workflow.
+- Created bd issues for Dramabox PM setup, governance, capability map, prompt library, inference route, and integration.
+- Added Dramabox-specific risks for license, consent, hardware feasibility, and Indonesian quality.
 - Selecting the authoritative implementation subproject remains the next implementation prerequisite.
+- Dramabox adoption is now managed through bd issues; next recommended task is `Karpathy-b9b` governance checklist.
 
 ## Blocked
 
