@@ -15,6 +15,10 @@ status: active
 
 Dramabox is an expressive, prompt-driven TTS and voice-cloning model from Resemble AI. It can generate speech where the prompt controls speaker identity, emotion, delivery, laughs, sighs, breaths, pauses, and transitions. The canonical public model ID is `ResembleAI/Dramabox`, not `ResambleAI/Dramabox`.
 
+## Current user-declared use scope
+
+For this workspace, the active scope is personal development only: converting the user's thesis presentation text and selected FAQ content into private audio for repeated listening anytime/anywhere. Public/commercial distribution is out of scope unless a new governance review is opened. Evidence: `S-20260523-user-dramabox-personal-use-scope`.
+
 ## What it can be used for
 
 1. Expressive narration: warm, angry, whispering, comedic, dramatic, presenter-style delivery.
@@ -57,6 +61,8 @@ Use this pattern:
 ## Governance baseline
 
 - License source: `wiki/sources/S-20260523-ltx2-community-license.md`.
+- User scope source: `wiki/sources/S-20260523-user-dramabox-personal-use-scope.md`.
+- Current personal-use scope: thesis presentation audio and FAQ audio for private learning/listening.
 - Internal governed experiments: GO-TRIAL if consent, disclosure, watermark logging, and restricted-use checks pass.
 - Public/commercial use: gated until license/revenue-threshold review is complete.
 - Voice cloning: explicit consent required; non-consented impersonation/deepfake use is NO-GO.

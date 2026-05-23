@@ -5,6 +5,20 @@ bd issue: Karpathy-b9b
 Source basis: `wiki/sources/S-20260523-ltx2-community-license.md` and raw license `wiki/raw/inbox/S-20260523-ltx2-community-license.md`
 Scope: ResembleAI/Dramabox use inside this Karpathy text-to-audio workflow.
 Status: ACCEPTED FOR INTERNAL GOVERNED EXPERIMENTS; public/commercial use remains gated.
+Current user-declared scope: personal development only — thesis presentation text-to-audio and selected FAQ audio for private listening anytime/anywhere. Source: `wiki/sources/S-20260523-user-dramabox-personal-use-scope.md`.
+
+## Current personal-use scope
+
+GO-TRIAL scope is narrowed to:
+
+- private/personal learning audio
+- thesis presentation rehearsal audio
+- FAQ audio for repeated private listening
+- no public distribution
+- no commercial deployment
+- no third-party voice cloning unless consent is explicitly recorded
+
+This lowers operational risk but does not remove the checklist: consent, watermark logging, disclosure for any shared/disseminated copy, and output-path verification still apply.
 
 ## MAS Evidence Packet
 

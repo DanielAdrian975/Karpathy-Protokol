@@ -174,3 +174,10 @@ Created `wiki/KARPATHY_WORKSPACE_AWARE_REPORT.html`, a Wikipedia-style HTML repo
 - Updated `docs/process/DRAMABOX_PM_CONTEXT.md` so future sessions can continue from `Karpathy-cwq` without rereading stable files.
 - Kaizen result: highest-risk gate closed first; next microtask is no-install capability matrix.
 - Remaining unresolved items: commercial/public deployment still requires separate legal/revenue-threshold review; Indonesian quality and local runtime remain unverified.
+
+## 2026-05-23 | decision | S-20260523-user-dramabox-personal-use-scope | Dramabox personal-use scope
+
+- Captured the user's scope clarification as raw source `wiki/raw/inbox/S-20260523-user-dramabox-personal-use-scope.md` and normalized source page `wiki/sources/S-20260523-user-dramabox-personal-use-scope.md`.
+- Updated Dramabox governance/context pages to narrow active use to personal development: thesis presentation text-to-audio and FAQ audio for private listening anytime/anywhere.
+- Evidence basis: direct user statement in the current session.
+- Remaining unresolved items: Indonesian output quality, route feasibility, and whether FAQ content needs extra healthcare/casemix guardrails.

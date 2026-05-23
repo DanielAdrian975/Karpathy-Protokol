@@ -6,8 +6,17 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 
 ## Active PM issue
 
-- `Karpathy-b9b` — Dramabox governance: license, consent, watermark checks — ready to close after commit.
-- Next active candidate: `Karpathy-cwq` — Phase 1 no-install capability map.
+- `Karpathy-cwq` — Phase 1 no-install capability map.
+- `Karpathy-b9b` — closed; governance baseline exists.
+
+## Current user-declared scope
+
+- Personal development/private learning only.
+- Convert thesis presentation text to audio.
+- Convert selected FAQ content to audio.
+- Listen privately anytime/anywhere.
+- No public/commercial distribution in current scope.
+- Source: `wiki/sources/S-20260523-user-dramabox-personal-use-scope.md`.
 
 ## Backlog
 
