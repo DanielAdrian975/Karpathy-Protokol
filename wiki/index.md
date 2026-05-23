@@ -68,3 +68,5 @@ The existing legacy wiki describes a Forex Trading Strategy Development System w
 | `docs/process/DRAMABOX_GOVERNANCE_CHECKLIST.md` | Governance checklist for Dramabox experiments: license threshold, consent, watermark, disclosure, healthcare/casemix guardrails, and GO/NO-GO rules. |
 | `docs/process/DRAMABOX_PM_CONTEXT.md` | Token-efficient session anchor for Dramabox PM to avoid rereading stable process/wiki files. |
 | `wiki/sources/S-20260523-user-dramabox-personal-use-scope.md` | User-declared Dramabox scope: personal thesis-presentation and FAQ audio for private learning/listening; no public/commercial distribution in current scope. |
+| `wiki/syntheses/dramabox-capability-map.md` | No-install capability, parameter, and route matrix for private thesis/FAQ audio; closes `Karpathy-cwq`. |
+| `apps/thesis_faq_audio_app/README.md` | Local Windows SAPI text-to-audio MVP for thesis/FAQ WAV generation while Dramabox route remains gated. |

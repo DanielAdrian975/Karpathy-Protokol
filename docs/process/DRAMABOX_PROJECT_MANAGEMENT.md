@@ -33,11 +33,11 @@ A Dramabox workflow is considered operational when:
 | Phase | bd issue | Owner | Status | Deliverable | Acceptance criteria |
 |---|---|---|---|---|---|
 | PM setup | Karpathy-c11 | Hermes/Gysje | closed | This plan + wiki roadmap | Files exist; wiki index/log updated; risks recorded |
-| Phase 1 capability map | Karpathy-cwq | Hermes/Gysje | open | Dramabox capability matrix | Parameters, files, VRAM, prompt rules, Space/local options cited from source |
+| Phase 1 capability map | Karpathy-cwq | Hermes/Gysje | closed | `wiki/syntheses/dramabox-capability-map.md` | Parameters, files, VRAM, prompt rules, route options, and private thesis/FAQ scope cited from source |
 | Phase 2 prompt library | Karpathy-vv0 | Hermes/Gysje | open | Reusable prompt templates | Narrator, Obsidian note, trading explainer, emotional dialogue, Indonesian test prompts created; Indonesian marked unresolved until reviewed |
 | Phase 3 inference route | Karpathy-isg | Hermes/Gysje | open | Route decision + first WAV | GPU/VRAM check done; route selected; output WAV exists and is logged |
 | Phase 4 integration | Karpathy-e5c | Hermes/Gysje | open | Workspace integration | Repeatable text-to-audio workflow tied to Obsidian/text files and experiment log |
-| Governance | Karpathy-b9b | Hermes/Gysje | open | License/consent/watermark checklist | LTX-2 license reviewed; consent rule defined; watermark disclosure rule defined |
+| Governance | Karpathy-b9b | Hermes/Gysje | closed | License/consent/watermark checklist | LTX-2 license reviewed; consent rule defined; watermark disclosure rule defined |
 
 ## Kaizen operating loop
 
@@ -152,6 +152,6 @@ Candidate integrations:
 
 Recommended next 15-minute Kaizen microtask:
 
-`Karpathy-b9b`: review the Hugging Face LICENSE and create a one-page governance checklist before any voice cloning or public output.
+`Karpathy-vv0`: create a thesis/FAQ Indonesian prompt library and listening rubric for both the Windows SAPI fallback app and future Dramabox tests.
 
-Reason: it protects all later work and prevents unsafe reuse of voices or licensed outputs.
+Reason: the application MVP now exists, but audio usefulness depends on repeatable chunking, narration style prompts, and a simple listening-quality rubric.

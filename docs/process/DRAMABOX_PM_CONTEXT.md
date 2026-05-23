@@ -6,7 +6,8 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 
 ## Active PM issue
 
-- `Karpathy-cwq` — Phase 1 no-install capability map.
+- `Karpathy-vv0` — Phase 2 prompt library and Indonesian tests.
+- `Karpathy-cwq` — closed; no-install capability map exists.
 - `Karpathy-b9b` — closed; governance baseline exists.
 
 ## Current user-declared scope
@@ -20,7 +21,7 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 
 ## Backlog
 
-- `Karpathy-cwq` — Phase 1 no-install capability map.
+- `Karpathy-cwq` — Phase 1 no-install capability map. CLOSED.
 - `Karpathy-vv0` — Phase 2 prompt library and Indonesian tests.
 - `Karpathy-isg` — Phase 3 hardware and minimal inference route.
 - `Karpathy-e5c` — Phase 4 workspace integration and experiment log.
@@ -33,6 +34,9 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 - Roadmap: `wiki/syntheses/dramabox-execution-roadmap.md`
 - Operator HTML: `wiki/DRAMABOX_OPERATOR_WORKFLOW.html`
 - Model source page: `wiki/sources/S-20260523-resembleai-dramabox-model-card.md`
+- Capability map: `wiki/syntheses/dramabox-capability-map.md`
+- Text-to-audio MVP app: `apps/thesis_faq_audio_app/app.py`
+- Text-to-audio MVP README: `apps/thesis_faq_audio_app/README.md`
 - Entity page: `wiki/entities/dramabox.md`
 
 ## Current stop conditions
@@ -54,9 +58,9 @@ Purpose: reduce token waste by avoiding full rereads of stable project files. Re
 
 ## Next Kaizen microtask
 
-Execute `Karpathy-cwq`:
+Execute `Karpathy-vv0`:
 
-1. Create no-install capability matrix from existing model card.
-2. Reuse governance checklist; do not reread stable process docs.
-3. Compare route options: Space, hosted GPU, local full model, quantized/community variants.
-4. Keep all performance claims marked source-based until locally verified.
+1. Create prompt templates for private thesis narration and FAQ listening.
+2. Include Windows SAPI fallback wording and future Dramabox prompt format.
+3. Add a listening rubric: pronunciation, pacing, section clarity, fatigue, and re-listen value.
+4. Keep Indonesian quality marked per-output until verified by listening notes.

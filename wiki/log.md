@@ -181,3 +181,11 @@ Created `wiki/KARPATHY_WORKSPACE_AWARE_REPORT.html`, a Wikipedia-style HTML repo
 - Updated Dramabox governance/context pages to narrow active use to personal development: thesis presentation text-to-audio and FAQ audio for private listening anytime/anywhere.
 - Evidence basis: direct user statement in the current session.
 - Remaining unresolved items: Indonesian output quality, route feasibility, and whether FAQ content needs extra healthcare/casemix guardrails.
+
+## 2026-05-23 | synthesis | dramabox-capability-map-and-app-mvp | Capability map and text-to-audio MVP
+
+- Created `wiki/syntheses/dramabox-capability-map.md` to close `Karpathy-cwq` without local Dramabox install.
+- Created local app `apps/thesis_faq_audio_app/app.py` plus README/tests for private thesis/FAQ text-to-audio using Windows SAPI fallback.
+- Verified unit tests and generated smoke WAV at `apps/thesis_faq_audio_app/outputs/20260523-181924-smoke-test/smoke-test-001.wav` (243416 bytes).
+- Updated PM context, experiment log, progress, entity page, and wiki index.
+- Kaizen: hidden potential is immediate private audio value via local fallback while Dramabox remains gated; blind spot is Indonesian quality remains unreviewed until listening notes exist.

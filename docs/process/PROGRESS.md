@@ -63,7 +63,9 @@ Process initialization has created a reusable operating layer for all major task
 - Added Dramabox-specific risks for license, consent, hardware feasibility, and Indonesian quality.
 - Selecting the authoritative implementation subproject remains the next implementation prerequisite.
 - Dramabox adoption is now managed through bd issues.
-- Completed Dramabox governance checklist from LTX-2 Community License; next recommended task is `Karpathy-cwq` no-install capability matrix.
+- Completed Dramabox governance checklist from LTX-2 Community License.
+- Completed `Karpathy-cwq` no-install capability matrix and created a local Windows SAPI thesis/FAQ text-to-audio MVP with verified smoke WAV output.
+- Next recommended task is `Karpathy-vv0`: prompt library and Indonesian listening rubric.
 
 ## Blocked
 

@@ -77,4 +77,6 @@ Use this pattern:
 ## Links
 
 - [[dramabox-adoption-plan]]
+- `wiki/syntheses/dramabox-capability-map.md`
+- `apps/thesis_faq_audio_app/README.md`
 - `wiki/sources/S-20260523-resembleai-dramabox-model-card.md`
